@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // glpat-VVibRbJ7pSfHKcYLnU5S   gitlab AC
+let information = <p>Welcome to meshLab, where you can find all the information!</p>
 
 export function FetchProjectData() {
     const [data, setData] = useState(null);
@@ -14,16 +15,14 @@ export function FetchProjectData() {
             },
         })
             .then((response) => response.json())
-            .then((data) => console.log(data));
+            .then((data: string) => console.log(data));
     }, []);
-
-
+    information = <p>UGH</p>
 }
-
 
 const Fetcher = () => {
     FetchProjectData();
-    return <h1>YOOOO!</h1>
+    return (information)
 }
 
 export { Fetcher }
