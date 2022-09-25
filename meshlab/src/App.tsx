@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
-import { Fetcher } from './components/Fetcher';
+import { UserFetcher } from './components/UserFetcher';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <button>Search</button>*/}
         <div>
           Here are all the users:
-          <Fetcher></Fetcher>
+          <UserFetcher />
         </div>
       </div>
     </div >
