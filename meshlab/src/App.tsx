@@ -6,9 +6,14 @@ function App() {
   return (
     < div className="App" >
       <h1>meshLab</h1>
-      {/*Here comes the searchbar
-      <button>Search</button>*/}
-      <Fetcher></Fetcher>
+      <div>
+        {/*Here comes the searchbar
+        <button>Search</button>*/}
+        <div>
+          Here are all the users:
+          <Fetcher></Fetcher>
+        </div>
+      </div>
     </div >
   );
 }
