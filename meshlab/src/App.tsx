@@ -18,7 +18,6 @@ function App() {
         />
 
         <div>
-          Here are all the users:
           <UserFetcher />
         </div>
       </div>
