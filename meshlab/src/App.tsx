@@ -4,11 +4,12 @@ import Button from './components/Button';
 import Input from './components/Input';
 import { faSearch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { UserFetcher } from './components/UserFetcher';
+import Header from './components/Header';
 
 function App() {
   return (
     < div className="App" >
-      <h1>meshLab</h1>
+      <Header></Header>
       <div>
         <Input
           onChange={filter}
