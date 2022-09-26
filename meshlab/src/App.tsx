@@ -27,7 +27,6 @@ function App() {
           onKeyDown = {filter}
         />
         <div>
-          Here are all the users:
           <UserFetcher />
         </div>
       </div>
