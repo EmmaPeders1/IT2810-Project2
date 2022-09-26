@@ -5,12 +5,13 @@ import Input from './components/Input';
 import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { UserFetcher } from './components/UserFetcher';
 import UserFilter from './components/UserFilter';
+import Header from './components/Header';
 
 function App() {
   return (
     < div className="App" >
-      <h1>meshLab</h1>
-      <div className="search-component">
+      <Header />
+      <div>
         <Input
           onChange={search}
           placeholder = "Insert URL"
@@ -26,7 +27,7 @@ function App() {
           icon={faSearch}
           onKeyDown = {search}
         />
-      <div>
+      </div>
       <div className = "filter-component">
         <UserFilter />
         <Button
@@ -38,9 +39,9 @@ function App() {
         />
       </div>
           Here are all the users:
+        <div>
           <UserFetcher />
         </div>
-      </div>
     </div >
   );
 }
