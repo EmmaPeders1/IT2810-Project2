@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import SearchBar from './components/Searchbar';
 import { UserFetcher } from './components/UserFetcher';
 
 function App() {
@@ -7,8 +8,15 @@ function App() {
     < div className="App" >
       <h1>meshLab</h1>
       <div>
-        {/*Here comes the searchbar
-        <button>Search</button>*/}
+        <SearchBar
+          value=" "
+          buttonText="Filter"
+          placeholder="Insert URL"
+          onChange={filter}
+          onKeyDown={filter}
+          onClick={filter}
+        />
+
         <div>
           Here are all the users:
           <UserFetcher />
@@ -17,5 +25,9 @@ function App() {
     </div >
   );
 }
+
+const filter = () => {
+  console.log("Hello");
+};
 
 export default App;

@@ -17,7 +17,8 @@ function UserFetcher() {
 
     const [data, setData] = useState<UData[]>([]);
     const getData = () => {
-        fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/17628/users'
+        fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/17628/members'
+        //'https://gitlab.stud.idi.ntnu.no/api/v4/projects/17628/members/all/{id} to get one of the members'
             , {
                 headers: {
                     "PRIVATE-TOKEN": "glpat-Fy8Cs4SqsPRrBa6MirZy", // our projects access token
