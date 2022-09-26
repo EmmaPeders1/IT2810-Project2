@@ -1,0 +1,12 @@
+#HeaderContainer {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  padding: 5em;
+  margin-bottom: 10em;
+  background: linear-gradient(to bottom, #66ccff 0%, #9966ff 100%);
+  color: white;
+  font-family: "Lucida Console", monospace;
+}

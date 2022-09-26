@@ -1,22 +1,31 @@
 import React from 'react';
 import './App.css';
-import SearchBar from './components/Searchbar';
+import Button from './components/Button';
+import Input from './components/Input';
+import { faSearch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { UserFetcher } from './components/UserFetcher';
+import Header from './components/Header';
 
 function App() {
   return (
     < div className="App" >
-      <h1>meshLab</h1>
+      <Header></Header>
       <div>
-        <SearchBar
-          value=" "
-          buttonText="Filter"
-          placeholder="Insert URL"
+        <Input
           onChange={filter}
-          onKeyDown={filter}
-          onClick={filter}
+          placeholder = "Insert URL"
         />
-
+        <Input
+          onChange={filter}
+          placeholder = "Insert access token"
+        />
+        <Button
+          onClick = {filter}
+          label= " Filter"
+          className="search-button"
+          icon={faSearch}
+          onKeyDown = {filter}
+        />
         <div>
           <UserFetcher />
         </div>
