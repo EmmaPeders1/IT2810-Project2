@@ -6,6 +6,7 @@ import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { UserFetcher } from './components/UserFetcher';
 import UserFilter from './components/UserFilter';
 import Header from './components/Header';
+import DatePicker from './components/DatePicker';
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
       </div>
       <div className = "filter-component">
         <UserFilter />
+        <DatePicker />
+        <DatePicker />
         <Button
           onClick = {filter}
           label= " Filter"
