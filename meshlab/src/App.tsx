@@ -10,7 +10,7 @@ function App() {
   return (
     < div className="App" >
       <Header></Header>
-      <div>
+      <div className="filter-container">
         <Input
           onChange={filter}
           placeholder = "Insert URL"
@@ -21,11 +21,13 @@ function App() {
         />
         <Button
           onClick = {filter}
-          label= " Filter"
+          label= "GET"
           className="search-button"
           icon={faSearch}
           onKeyDown = {filter}
         />
+      </div>
+      <div>
         <div>
           <UserFetcher />
         </div>

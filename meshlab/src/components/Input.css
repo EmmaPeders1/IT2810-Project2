@@ -1,0 +1,38 @@
+.input-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: skyblue;
+}
+
+.input-field {
+  border-radius: 5px;
+  border: 0;
+  outline: 0;
+  padding: 0.6rem 0.8rem;
+  color: rgb(4, 52, 71);
+  background: rgb(237, 245, 248);
+  font-size: inherit;
+  vertical-align: center;
+  outline: 1.5px solid rgb(4, 52, 71);
+}
+
+.input-field::placeholder {
+  color: rgb(4, 52, 71);
+  opacity: 0.7;
+}
+
+.input-field:hover,
+.input-field:focus {
+  outline: 1.5px solid var(--color-secondary-dark);
+}
+
+.input-field::-webkit-outer-spin-button,
+.input-field::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.input-field[type="number"] {
+  appearance: textfield;
+}
