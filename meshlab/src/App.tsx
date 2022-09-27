@@ -4,11 +4,12 @@ import Button from './components/Button';
 import Input from './components/Input';
 import { faSearch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { UserFetcher } from './components/UserFetcher';
+import Header from './components/Header';
 
 function App() {
   return (
     < div className="App" >
-      <h1>meshLab</h1>
+      <Header></Header>
       <div className="filter-container">
         <Input
           onChange={filter}
@@ -28,7 +29,6 @@ function App() {
       </div>
       <div>
         <div>
-          Here are all the users:
           <UserFetcher />
         </div>
       </div>
