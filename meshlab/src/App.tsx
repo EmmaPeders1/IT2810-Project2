@@ -9,7 +9,7 @@ function App() {
   return (
     < div className="App" >
       <h1>meshLab</h1>
-      <div>
+      <div className="filter-container">
         <Input
           onChange={filter}
           placeholder = "Insert URL"
@@ -20,11 +20,13 @@ function App() {
         />
         <Button
           onClick = {filter}
-          label= " Filter"
+          label= "GET"
           className="search-button"
           icon={faSearch}
           onKeyDown = {filter}
         />
+      </div>
+      <div>
         <div>
           Here are all the users:
           <UserFetcher />
