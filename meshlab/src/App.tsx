@@ -10,9 +10,9 @@ import DatePicker from './components/DatePicker';
 
 function App() {
   return (
-    < div className="App" >
-      <Header />
-      <div>
+    <div className="App" >
+      <Header></Header>
+      <div className="search-container">
         <Input
           onChange={search}
           placeholder = "Insert URL"
@@ -23,7 +23,7 @@ function App() {
         />
         <Button
           onClick = {search}
-          label= " Search"
+          label= "GET"
           className="search-button"
           icon={faSearch}
           onKeyDown = {search}
@@ -41,10 +41,11 @@ function App() {
           onKeyDown = {filter}
         />
       </div>
-          Here are all the users:
+      <div>
         <div>
           <UserFetcher />
         </div>
+      </div>
     </div >
   );
 }
