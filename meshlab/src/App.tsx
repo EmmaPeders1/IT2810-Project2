@@ -2,28 +2,44 @@ import React from 'react';
 import './App.css';
 import Button from './components/Button';
 import Input from './components/Input';
-import { faSearch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { UserFetcher } from './components/UserFetcher';
+import UserFilter from './components/UserFilter';
 import Header from './components/Header';
+import DatePicker from './components/DatePicker';
 
 function App() {
   return (
-    < div className="App" >
+    <div className="App" >
       <Header></Header>
-      <div className="filter-container">
+      <p>Everything you could ever want from a repository, right at your fingertips</p>
+      <div className="search-container">
         <Input
-          onChange={filter}
+          className='URL-input'
+          onChange={search}
           placeholder = "Insert URL"
         />
         <Input
-          onChange={filter}
+          onChange={search}
           placeholder = "Insert access token"
         />
         <Button
-          onClick = {filter}
-          label= "GET"
+          onClick = {search}
+          label= " GET "
           className="search-button"
           icon={faSearch}
+          onKeyDown = {search}
+        />
+      </div>
+      <div className = "filter-container">
+        <UserFilter />
+        <DatePicker />
+        <DatePicker />
+        <Button
+          onClick = {filter}
+          label= " FILTER "
+          className="filter-button"
+          icon={faFilter}
           onKeyDown = {filter}
         />
       </div>
@@ -36,8 +52,12 @@ function App() {
   );
 }
 
+const search = () => {
+  console.log("search");
+};
+
 const filter = () => {
-  console.log("Hello");
+  console.log("filter");
 };
 
 export default App;
