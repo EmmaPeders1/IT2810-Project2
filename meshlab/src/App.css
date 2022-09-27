@@ -44,3 +44,19 @@
   gap: 1rem;
   padding: 2rem;
 }
+
+.filter-container{
+  flex-flow: row wrap;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+p{
+  color: grey;
+}
+
+.URL-input{
+  width: 30rem;
+}

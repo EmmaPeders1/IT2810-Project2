@@ -15,7 +15,7 @@ export default function UserFilter() {
   };
 
   return (
-    <Box sx={{ minWidth: 250 }}>
+    <Box sx={{ minWidth: 150 }}>
       <FormControl id="formControl">
         <InputLabel id="demo-simple-select-label">User</InputLabel>
         <Select

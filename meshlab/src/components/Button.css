@@ -4,12 +4,12 @@
   justify-content: center;
   gap: 0.5rem;
   cursor: pointer;
-  padding: 0.3rem 0.8rem;
+  padding: 0.4rem 1rem;
   border-radius: 5px;
   font-size: inherit;
   width: max-content;
   border: 0;
-  background: skyblue;
+  background: #66ccff;
   outline: 1.5px solid rgb(110, 188, 219);
   color: rgb(4, 52, 71);
   white-space: nowrap;

@@ -5,10 +5,10 @@ export default function NativePickers() {
   return (
     <TextField
       id="date"
-      label="Start date"
       type="date"
-      defaultValue="2022-10-01"
-      sx={{ width: 220 }}
+      sx={{ width: 155 }}
+      //TODO: not have both labels be "Date"
+      label="Date"
       InputLabelProps={{
         shrink: true,
       }}

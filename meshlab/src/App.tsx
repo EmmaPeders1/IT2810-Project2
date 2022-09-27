@@ -12,8 +12,10 @@ function App() {
   return (
     <div className="App" >
       <Header></Header>
+      <p>Everything you could ever want from a repository, right at your fingertips</p>
       <div className="search-container">
         <Input
+          className='URL-input'
           onChange={search}
           placeholder = "Insert URL"
         />
@@ -23,19 +25,19 @@ function App() {
         />
         <Button
           onClick = {search}
-          label= "GET"
+          label= " GET "
           className="search-button"
           icon={faSearch}
           onKeyDown = {search}
         />
       </div>
-      <div className = "filter-component">
+      <div className = "filter-container">
         <UserFilter />
         <DatePicker />
         <DatePicker />
         <Button
           onClick = {filter}
-          label= " Filter"
+          label= " FILTER "
           className="filter-button"
           icon={faFilter}
           onKeyDown = {filter}
