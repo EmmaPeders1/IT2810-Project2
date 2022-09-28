@@ -22,7 +22,7 @@ function UserFetcher() {
 
   useEffect(() => {
 
-    fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/17628/members/alrhsdl'
+    fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/17628/members/all'
         //'https://gitlab.stud.idi.ntnu.no/api/v4/projects/17628/members/all/{id} to get one of the members'
         , {
             headers: {

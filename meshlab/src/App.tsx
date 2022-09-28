@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Button from './components/Button';
 import Input from './components/Input';
-import { faSearch, faFilter } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faFilter, faUser, faPen, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { UserFetcher } from './components/UserFetcher';
 import UserFilter from './components/UserFilter';
 import Header from './components/Header';
@@ -32,21 +32,27 @@ function App() {
         />
       </div>
       <div className = "filter-container">
-        <UserFilter />
-        <DatePicker />
-        <DatePicker />
         <Button
-          onClick = {filter}
-          label= " FILTER "
-          className="filter-button"
-          icon={faFilter}
-          onKeyDown = {filter}
+          onClick = {user_filter}
+          label= " USERS "
+          className="user-filter-button"
+          icon={faUser}
+          onKeyDown = {user_filter}
         />
-      </div>
-      <div>
-        <div>
-          <UserFetcher />
-        </div>
+        <Button
+          onClick = {commit_filter}
+          label= " COMMITS "
+          className="commit-filter-button"
+          icon={faPen}
+          onKeyDown = {commit_filter}
+        />
+        <Button
+          onClick = {issue_filter}
+          label= " ISSUES "
+          className="issue-filter-button"
+          icon={faExclamationTriangle}
+          onKeyDown = {issue_filter}
+        />
       </div>
     </div >
   );
@@ -56,8 +62,38 @@ const search = () => {
   console.log("search");
 };
 
-const filter = () => {
-  console.log("filter");
+const user_filter = () => {
+  console.log("user_filter");
+  return(
+    <div>
+      <UserFetcher />
+    </div>
+  );
+}
+
+const commit_filter = () => {
+  return(
+    <div className = "filter-container">
+        <UserFilter />
+        <DatePicker />
+        <DatePicker />
+        <Button
+          onClick = {commit_filter_fully}
+          label= " FILTER "
+          className="filter-button"
+          icon={faFilter}
+          onKeyDown = {commit_filter_fully}
+        />
+      </div>
+  );
+};
+
+const commit_filter_fully = () => {
+  console.log("commit filter");
+};
+
+const issue_filter = () => {
+  console.log("issue filter");
 };
 
 export default App;
