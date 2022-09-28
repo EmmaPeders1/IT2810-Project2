@@ -16,57 +16,80 @@ type UData = {
 }
 
 function UserFetcher() {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [data, setData] = useState<UData[]>([]);
 
-    const [data, setData] = useState<UData[]>([]);
-    const getData = () => {
-        fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/17628/users'
+  useEffect(() => {
+
+    fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/17628/members/alrhsdl'
         //'https://gitlab.stud.idi.ntnu.no/api/v4/projects/17628/members/all/{id} to get one of the members'
-            , {
-                headers: {
-                    "PRIVATE-TOKEN": "glpat-Fy8Cs4SqsPRrBa6MirZy", // our projects access token
-                    'Content-Type': 'application/json',
-                    'Accept': 'appliaction/json'
-                }
+        , {
+            headers: {
+                "PRIVATE-TOKEN": "glpat-Fy8Cs4SqsPRrBa6MirZy", // our projects access token
+                'Content-Type': 'application/json',
+                'Accept': 'appliaction/json'
+            }
+        }
+    )
+        .then(function (res): Response {
+            if (!res.ok) {
+                throw Error(res.statusText)
+            }
+            return res
+        })
+        .then(res => res.json())
+        .then(
+            (result: Promise<any>) => {
+                setIsLoaded(true);
+                const response = result as unknown as UData[];
+                setData(response);
             }
         )
-            .then(function (response) {
-                return response.json() as unknown as UData[];
-            })
-            .then(function (myJson) {
-                console.log(myJson);
-                setData(myJson);
-            });
-    }
-    useEffect(() => {
-        getData()
-    }, [])
+        .catch(
+            (err) => {
+                setIsLoaded(true);
+                console.log(err);
+                setError(err);
+            }
+        )
 
-  return (
-    <Box sx={{ height: 400, width: '100%'}}>
-    <DataGrid
-      rows={data.map((user: UData) => (
-        { id: user.id, username: user.username, fullName: user.name}
-        ))}
-      columns={[{ field: 'id', headerName: 'ID', width: 90 },
-      {
-        field: 'username',
-        headerName: 'Username',
-        width: 150,
-      },
-      {
-        field: 'fullName',
-        headerName: 'Full name',
-        width: 150,
-      },]}
-      getRowId={(row) => row.id}
-      pageSize={data.length}
-      rowsPerPageOptions={[data.length]}
-      checkboxSelection
-      disableSelectionOnClick
-      experimentalFeatures={{ newEditingApi: true }}
-    />
-  </Box>
-  );
-}
+}, [])
+
+  //return JSX: if there was an error: tell the user, otherwise return the data
+  if (error) {
+    return <p> Something went wrong with fetching the data. Are you sure there are no spelling mistakes in your url, and you have the correct accesses? (make sure you're using the correct access token)</p>
+  } else if (!isLoaded) {
+    return <p>Loading...</p>
+
+  } else {
+    return (
+      <Box sx={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={data.map((user: UData) => (
+          { id: user.id, username: user.username, fullName: user.name}
+          ))}
+        columns={[{ field: 'id', headerName: 'ID', width: 90 },
+        {
+          field: 'username',
+          headerName: 'Username',
+          width: 150,
+        },
+        {
+          field: 'fullName',
+          headerName: 'Full name',
+          width: 150,
+        },]}
+        getRowId={(row) => row.id}
+        pageSize={data.length}
+        rowsPerPageOptions={[data.length]}
+        checkboxSelection
+        disableSelectionOnClick
+        experimentalFeatures={{ newEditingApi: true }}
+      />
+    </Box>
+    );
+  }
+  }
 
 export { UserFetcher }
