@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-import { DataGrid, GridColDef, selectedGridRowsCountSelector } from '@mui/x-data-grid';
-import userEvent from '@testing-library/user-event';
+import { DataGrid } from '@mui/x-data-grid';
 
 // glpat-VVibRbJ7pSfHKcYLnU5S   gitlab AC OLD NOT WORKING
 // glpat-Fy8Cs4SqsPRrBa6MirZy new one with role = developer
@@ -62,34 +61,32 @@ function UserFetcher() {
     } else if (!isLoaded) {
         return <p>Loading...</p>
 
-    } else {
-        return (
-            <Box sx={{ height: 400, width: '100%' }}>
-                <DataGrid
-                    rows={data.map((user: UData) => (
-                        { id: user.id, username: user.username, fullName: user.name }
-                    ))}
-                    columns={[{ field: 'id', headerName: 'ID', width: 90 },
-                    {
-                        field: 'username',
-                        headerName: 'Username',
-                        width: 150,
-                    },
-                    {
-                        field: 'fullName',
-                        headerName: 'Full name',
-                        width: 150,
-                    },]}
-                    getRowId={(row) => row.id}
-                    pageSize={data.length}
-                    rowsPerPageOptions={[data.length]}
-                    checkboxSelection
-                    disableSelectionOnClick
-                    experimentalFeatures={{ newEditingApi: true }}
-                />
-            </Box>
-        );
-    }
-}
+  } else {
+    return (
+      <Box sx={{ height: 400, width: '90%', margin: "0 auto 0 auto" }}>
+      <DataGrid
+        rows={data.map((user: UData) => (
+          { id: user.id, username: user.username, fullName: user.name}
+          ))}
+        columns={[{ field: 'id', headerName: 'ID', width: 90 },
+        {
+          field: 'username',
+          headerName: 'Username',
+          width: 150,
+        },
+        {
+          field: 'fullName',
+          headerName: 'Full name',
+          width: 300,
+        },]}
+        getRowId={(row) => row.id}
+        pageSize={data.length}
+        rowsPerPageOptions={[data.length]}
+        experimentalFeatures={{ newEditingApi: true }}
+      />
+    </Box>
+    );
+  }
+  }
 
 export { UserFetcher }

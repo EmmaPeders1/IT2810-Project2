@@ -4,10 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: baseline;
-  padding: 1em;
+  padding: 0.4em;
   margin-bottom: 1.5em;
   background: linear-gradient(to bottom, #66ccff 0%, #9966ff 100%);
   color: white;
   font-family: "Lucida Console", monospace;
-  font-size: xx-large;
+  font-size: 200%;
+  letter-spacing: 0.2em;
 }
