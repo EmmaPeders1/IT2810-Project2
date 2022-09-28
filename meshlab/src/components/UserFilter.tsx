@@ -7,6 +7,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import './UserFilter.css'
 
+//Delete this file
 export default function UserFilter() {
   const [user, setUser] = React.useState('');
 
