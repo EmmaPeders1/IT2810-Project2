@@ -4,6 +4,7 @@ import Button from './components/Button';
 import Input from './components/Input';
 import { faSearch, faFilter, faUser, faPen, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { UserFetcher } from './components/UserFetcher';
+import { CommitFetcher } from './components/CommitFetcher';
 import UserFilter from './components/UserFilter';
 import Header from './components/Header';
 import DatePicker from './components/DatePicker';
@@ -30,6 +31,7 @@ function App() {
           icon={faFilter}
           onKeyDown = {commit_filter}
         />
+        <CommitFetcher />
       </div>)
       case "issues":
         return (<div className = "filter-container">
