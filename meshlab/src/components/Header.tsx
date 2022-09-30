@@ -1,6 +1,7 @@
 import React from 'react'
 import './Header.css'
 
+// As per the requirements, out project has one class based component
 class Header extends React.Component {
   render() {
     return (
