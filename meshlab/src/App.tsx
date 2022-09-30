@@ -5,6 +5,7 @@ import Input from './components/Input';
 import { faSearch, faFilter, faUser, faPen, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { UserFetcher } from './components/UserFetcher';
 import { CommitFetcher } from './components/CommitFetcher';
+import { Filters } from './components/Filters';
 import UserFilter from './components/UserFilter';
 import Header from './components/Header';
 import DatePicker from './components/DatePicker';
@@ -16,37 +17,13 @@ function App() {
 
   const [displayComponent, setDisplayComponent] = useState<dState>(null)
   const display = (displayComponent: dState) => {
-    switch(displayComponent){
+    switch (displayComponent) {
       case "users":
         return <UserFetcher />
       case "commits":
-        return (<div className = "filter-container">
-        <UserFilter />
-        <DatePicker />
-        <DatePicker />
-        <Button
-          onClick = {commit_filter}
-          label= " FILTER "
-          className="filter-button"
-          icon={faFilter}
-          onKeyDown = {commit_filter}
-        />
-        <CommitFetcher />
-      </div>)
+        return <CommitFetcher />
       case "issues":
-        return (<div className = "filter-container">
-        <UserFilter />
-        <DatePicker />
-        <DatePicker />
-        <StatusFilter />
-        <Button
-          onClick = {issue_filter}
-          label= " FILTER "
-          className="filter-button"
-          icon={faFilter}
-          onKeyDown = {issue_filter}
-        />
-      </div>)
+        return ""
       default:
         return ""
     }
@@ -59,37 +36,37 @@ function App() {
       <div className="search-container">
         <Input
           className='URL-input'
-          onChange={search}
-          placeholder = "Insert URL"
+          onChange={() => console.log("input link changed!")}
+          placeholder="Insert URL"
         />
         <Input
-          onChange={search}
-          placeholder = "Insert access token"
+          onChange={() => console.log("input token changed!")}
+          placeholder="Insert access token"
         />
         <Button
-          onClick = {search}
-          label= " GET "
+          onClick={() => console.log("search!")}
+          label=" GET "
           className="search-button"
           icon={faSearch}
-          onKeyDown = {search}
+          onKeyDown={() => console.log("search!")}
         />
       </div>
-      <div className = "filter-container">
+      <div className="filter-container">
         <Button
-          onClick = {() => setDisplayComponent("users")}
-          label= " USERS "
+          onClick={() => setDisplayComponent("users")}
+          label=" USERS "
           className="user-filter-button"
           icon={faUser}
         />
         <Button
-          onClick = {() => setDisplayComponent("commits")}
-          label= " COMMITS "
+          onClick={() => setDisplayComponent("commits")}
+          label=" COMMITS "
           className="commit-filter-button"
           icon={faPen}
         />
         <Button
-          onClick = {() => setDisplayComponent("issues")}
-          label= " ISSUES "
+          onClick={() => setDisplayComponent("issues")}
+          label=" ISSUES "
           className="issue-filter-button"
           icon={faExclamationTriangle}
         />
@@ -101,16 +78,6 @@ function App() {
   );
 }
 
-const search = () => {
-  console.log("search");
-};
 
-const commit_filter = () => {
-  console.log("search");
-};
-
-const issue_filter = () => {
-  console.log("search");
-};
 
 export default App;
