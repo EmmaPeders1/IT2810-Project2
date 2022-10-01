@@ -31,8 +31,9 @@ function App() {
 
   return (
     <div className="App" >
-      <Header></Header>
-      <p>Everything you could ever want from a repository, right at your fingertips</p>
+      <Header ></Header>
+      <p>Everything you could ever want from a repository, right at your fingertips
+      </p>
       <div className="search-container">
         <Input
           className='URL-input'
@@ -71,6 +72,7 @@ function App() {
           icon={faExclamationTriangle}
         />
       </div>
+
       <div>
         {display(displayComponent)}
       </div>
