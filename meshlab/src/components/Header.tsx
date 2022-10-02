@@ -1,5 +1,5 @@
 import React from 'react'
-import './Header.css'
+import './css/Header.css'
 
 // As per the requirements, out project has one class based component
 class Header extends React.Component {
