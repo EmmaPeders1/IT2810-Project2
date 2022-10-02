@@ -1,7 +1,7 @@
 import React from 'react';
 import { FC } from 'react';
 
-import './Input.css';
+import './css/Input.css';
 
 interface InputProps {
   id?: string;
