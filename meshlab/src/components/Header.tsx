@@ -1,12 +1,15 @@
 import React from 'react'
 import './Header.css'
 
-function Header() {
-  return (
-    <div id="HeaderContainer">
-      <h1>MeshLab</h1>
-    </div>
-  )
+// As per the requirements, out project has one class based component
+class Header extends React.Component {
+  render() {
+    return (
+      <div id="HeaderContainer">
+        <h1>MeshLab</h1>
+      </div>
+    )
+  }
 }
 
 export default Header

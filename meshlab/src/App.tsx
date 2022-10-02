@@ -5,6 +5,7 @@ import Input from './components/Input';
 import { faSearch, faFilter, faUser, faPen, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { UserFetcher } from './components/UserFetcher';
 import { CommitFetcher } from './components/CommitFetcher';
+import { IssueFetcher } from './components/IssueFetcher';
 import { Filters } from './components/Filters';
 import UserFilter from './components/UserFilter';
 import Header from './components/Header';
@@ -23,7 +24,7 @@ function App() {
       case "commits":
         return <CommitFetcher />
       case "issues":
-        return ""
+        return <IssueFetcher />
       default:
         return ""
     }
