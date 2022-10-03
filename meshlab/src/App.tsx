@@ -25,19 +25,44 @@ function App() {
 
   const [theme, setTheme] = useLocalStorage("theme", "dark");
 
+  //Currently some problem that might be here or in the fetcher components
+  //even though submiturl updates and useEffect reruns, the new fetch is not reflected in the ui unless the user 
+  //switches what component to display and back again
   const [displayComponent, setDisplayComponent] = useState<dState>(null)
   const display = (displayComponent: dState) => {
     switch (displayComponent) {
       case "users":
-        return <UserFetcher />
+        return <UserFetcher url={submitURL} token={submitToken} />
       case "commits":
-        return <CommitFetcher />
+        return <CommitFetcher url={submitURL} token={submitToken} />
       case "issues":
-        return <IssueFetcher />
+        return <IssueFetcher url={submitURL} token={submitToken} />
       default:
         return ""
     }
   }
+
+  const [currentURL, setCurrentURL] = useState<string>("123");
+  const [submitURL, setSubmitURL] = useState<string>("https://gitlab.stud.idi.ntnu.no/it2810-h22/Team-17/project2"); // for now we default to this so we dont have to input it for testing
+
+  const [currentToken, setCurrentToken] = useState<string>("aeg");
+  const [submitToken, setSubmitToken] = useState<string>("glpat-Fy8Cs4SqsPRrBa6MirZy"); // same defaulting, not really secure but whatever
+
+  function handleURLChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setCurrentURL(e.target.value);
+  }
+
+  function handleTokenChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setCurrentToken(e.target.value);
+  }
+
+  function handleSubmit(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+    setSubmitURL(currentURL);
+    setSubmitToken(currentToken);
+  }
+
+
 
   return (
     <div className="App" >
@@ -58,15 +83,16 @@ function App() {
       <div className="search-container">
         <Input
           className='URL-input'
-          onChange={() => console.log("input link changed!")}
-          placeholder="Insert URL"
+          onChange={handleURLChange}
+          placeholder="Insert your gitlab project URL"
         />
         <Input
-          onChange={() => console.log("input token changed!")}
+          onChange={handleTokenChange}
           placeholder="Insert access token"
         />
+
         <Button
-          onClick={() => console.log("search!")}
+          onClick={handleSubmit}
           label=" GET "
           className="search-button"
           icon={faSearch}

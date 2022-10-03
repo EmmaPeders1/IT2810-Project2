@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
+import { parseURL } from './../Utils';
+import { useSlotProps } from '@mui/base';
 
 // glpat-VVibRbJ7pSfHKcYLnU5S   gitlab AC OLD NOT WORKING
 // glpat-Fy8Cs4SqsPRrBa6MirZy new one with role = developer
@@ -14,17 +16,18 @@ type IData = {
     labels: string[];
 }
 
-function IssueFetcher() {
+function IssueFetcher(props: { url: string, token: string }) {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [data, setData] = useState<IData[]>([]);
 
     useEffect(() => {
-
-        fetch('https://gitlab.stud.idi.ntnu.no/api/v4/projects/17628/issues'
+        const [baseURL, path] = parseURL(props.url);
+        const url = baseURL + "/api/v4/projects/" + path + "/issues";
+        fetch(url
             , {
                 headers: {
-                    "PRIVATE-TOKEN": "glpat-Fy8Cs4SqsPRrBa6MirZy", // our projects access token
+                    "PRIVATE-TOKEN": props.token, // our projects access token
                     'Content-Type': 'application/json',
                     'Accept': 'appliaction/json'
                 }
