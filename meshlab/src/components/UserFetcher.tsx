@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { hello, parseURL } from './../Utils';
+import { ProjectContext } from '../context/ProjectContext';
+
 
 // glpat-VVibRbJ7pSfHKcYLnU5S   gitlab AC OLD NOT WORKING
 // glpat-Fy8Cs4SqsPRrBa6MirZy new one with role = developer
@@ -15,21 +17,23 @@ type UData = {
   web_url: string
 }
 
-function UserFetcher(props: { url: string, token: string }) {
+function UserFetcher() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState<UData[]>([]);
 
+  const projectInfo = useContext(ProjectContext);
+
   //reruns when prop (url) changes, yet not reflected inUI unless user switches what to dispplay and back again
   useEffect(() => {
-    const [baseURL, path] = parseURL(props.url);
+    const [baseURL, path] = parseURL(projectInfo.url);
     const url = baseURL + "/api/v4/projects/" + path + "/members/all";
     fetch(url
       //'https://gitlab.stud.idi.ntnu.no/api/v4/projects/17628/members/all/{id} to get one of the members'
       // https://gitlab.stud.idi.ntnu.no/it2810-h22/Team-17/project2, use /it2810-h22/Team-17/project2 instead of prject id. (/ represented as %2F)
       , {
         headers: {
-          "PRIVATE-TOKEN": props.token, // our projects access token is glpat-Fy8Cs4SqsPRrBa6MirZy
+          "PRIVATE-TOKEN": projectInfo.token, // our projects access token is glpat-Fy8Cs4SqsPRrBa6MirZy
           'Content-Type': 'application/json',
           'Accept': 'appliaction/json'
         }
@@ -57,7 +61,7 @@ function UserFetcher(props: { url: string, token: string }) {
         }
       )
 
-  }, [props.url])
+  }, [])
 
   //return JSX: if there was an error: tell the user, otherwise return the data
   if (error) {
