@@ -1,0 +1,15 @@
+#FooterContainer {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  background-color: blueviolet;
+  color: whitesmoke;
+  font-family: "Lucida Console", monospace;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  margin-top: 10em;
+  overflow: hidden;
+  padding: 2% 0 2% 0;
+  position: sticky;
+  bottom: 0px;
+}
