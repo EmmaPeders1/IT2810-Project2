@@ -27,7 +27,7 @@ function App() {
   const [theme, setTheme] = useLocalStorage("theme", "dark");
 
   //Currently some problem that might be here or in the fetcher components
-  //even though submiturl updates and useEffect reruns, the new fetch is not reflected in the ui unless the user 
+  //even though submiturl updates and useEffect reruns, the new fetch is not reflected in the ui unless the user
   //switches what component to display and back again
   const [displayComponent, setDisplayComponent] = useState<dState>(null)
   const display = (displayComponent: dState) => {
@@ -73,13 +73,13 @@ function App() {
   }
 
   return (
-    <div className="App" >
-      <Wrapper theme={theme}>
+    <Wrapper theme={theme}>
+      <div className="App" >
       <Header ></Header>
       <p>Everything you could ever want from a repository, right at your fingertips
       </p>
       < div className='theme-container'>
-        <Button 
+        <Button
             onClick={() =>
               theme === "light" ? setTheme("purple") : setTheme("light")
             }
@@ -132,8 +132,8 @@ function App() {
           {display(displayComponent)}
         </ProjectContext.Provider>
       </div>
-      </Wrapper>
-    </div >
+      </div >
+    </Wrapper>
   );
 }
 

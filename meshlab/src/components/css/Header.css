@@ -9,6 +9,7 @@
   font-family: "Lucida Console", monospace;
   font-size: 200%;
   letter-spacing: 0.2em;
+  overflow: hidden;
 }
 
 #headerImg {
@@ -18,11 +19,11 @@
 @media (max-width: 800px) {
   #headerImg {
     height: 150px;
-  } 
+  }
 }
 
 @media (max-width: 550px) {
   #headerImg {
     height: 130px;
-  } 
+  }
 }
