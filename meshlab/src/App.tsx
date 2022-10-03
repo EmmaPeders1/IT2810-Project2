@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Button from './components/Button';
 import Input from './components/Input';
-import { faSearch, faFilter, faUser, faPen, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faFilter, faUser, faPen, faExclamationTriangle, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons';
 import { UserFetcher } from './components/UserFetcher';
 import { CommitFetcher } from './components/CommitFetcher';
 import { IssueFetcher } from './components/IssueFetcher';
@@ -11,12 +11,19 @@ import UserFilter from './components/UserFilter';
 import Header from './components/Header';
 import DatePicker from './components/DatePicker';
 import StatusFilter from './components/StatusFilter';
-import { GlobalStyles } from './components/Globalstyles';
-import { ThemeButton } from './components/ThemeButton';
+import useLocalStorage from './web-storage/Localstorage';
+import styled from 'styled-components';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { PaletteMode } from '@mui/material';
+import { ClassNames } from '@emotion/react';
+import { Wrapper } from './components/Wrapper';
 
 type dState = "users" | "commits" | "issues" | null;
 
 function App() {
+
+  const [theme, setTheme] = useLocalStorage("theme", "dark");
 
   const [displayComponent, setDisplayComponent] = useState<dState>(null)
   const display = (displayComponent: dState) => {
@@ -34,10 +41,20 @@ function App() {
 
   return (
     <div className="App" >
-      <ThemeButton></ThemeButton>
+      <Wrapper theme={theme}>
       <Header ></Header>
       <p>Everything you could ever want from a repository, right at your fingertips
       </p>
+      < div className='theme-container'>
+        <Button 
+            onClick={() =>
+              theme === "light" ? setTheme("purple") : setTheme("light")
+            }
+            label="Change theme"
+            className="change-theme-button"
+            icon={faWandMagicSparkles}
+          />
+      </div>
       <div className="search-container">
         <Input
           className='URL-input'
@@ -80,6 +97,7 @@ function App() {
       <div>
         {display(displayComponent)}
       </div>
+      </Wrapper>
     </div >
   );
 }
@@ -87,3 +105,5 @@ function App() {
 
 
 export default App;
+
+
