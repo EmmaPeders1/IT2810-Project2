@@ -64,8 +64,12 @@ function CommitFetcher(props: { url: string, token: string }) {
 
   } else {
     return (
-      <Box sx={{ height: 400, width: '90%', margin: "0 auto 0 auto" }}>
-        <DataGrid sx={{borderColor: "black", color:"black"}} 
+      <Box sx={{ height: 400, width: '90%', margin: "0 auto 3rem auto" }}>
+        <DataGrid
+          getRowHeight={() => 'auto'}
+          getEstimatedRowHeight={() => 200}
+          density="comfortable"
+          sx={{borderColor: "black", textAlign: "left"}}
           rows={data.map((commit: CData) => (
             { author_name: commit.author_name, committed_date: commit.committed_date.substring(0, 10), id: commit.id, message: commit.message }
           ))}
@@ -78,17 +82,12 @@ function CommitFetcher(props: { url: string, token: string }) {
             {
               field: 'message',
               headerName: 'Message',
-              width: 650,
+              width: 350,
             },
             {
               field: 'author_name',
               headerName: 'Author',
-              width: 300,
-            },
-            {
-              field: 'id',
-              headerName: 'ID',
-              width: 200
+              width: 200,
             },]}
           getRowId={(row) => row.id}
           pageSize={data.length}
