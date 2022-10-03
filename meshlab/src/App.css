@@ -25,3 +25,11 @@ p{
 .URL-input{
   width: 30rem;
 }
+
+.theme-container{
+  flex-flow: row wrap;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+}

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Button from './components/Button';
 import Input from './components/Input';
-import { faSearch, faFilter, faUser, faPen, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faFilter, faUser, faPen, faExclamationTriangle, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons';
 import { UserFetcher } from './components/UserFetcher';
 import { CommitFetcher } from './components/CommitFetcher';
 import { IssueFetcher } from './components/IssueFetcher';
@@ -12,12 +12,19 @@ import UserFilter from './components/UserFilter';
 import Header from './components/Header';
 import DatePicker from './components/DatePicker';
 import StatusFilter from './components/StatusFilter';
+import useLocalStorage from './web-storage/Localstorage';
+import styled from 'styled-components';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { PaletteMode } from '@mui/material';
+import { ClassNames } from '@emotion/react';
+import { Wrapper } from './components/Wrapper';
 
 type dState = "users" | "commits" | "issues" | null;
 
 function App() {
 
-
+  const [theme, setTheme] = useLocalStorage("theme", "dark");
 
   //Currently some problem that might be here or in the fetcher components
   //even though submiturl updates and useEffect reruns, the new fetch is not reflected in the ui unless the user 
@@ -65,11 +72,22 @@ function App() {
     setProjectInfo({ url: currentURL, token: currentToken })
   }
 
-
-
   return (
     <div className="App" >
-      <Header></Header>
+      <Wrapper theme={theme}>
+      <Header ></Header>
+      <p>Everything you could ever want from a repository, right at your fingertips
+      </p>
+      < div className='theme-container'>
+        <Button 
+            onClick={() =>
+              theme === "light" ? setTheme("purple") : setTheme("light")
+            }
+            label="Change theme"
+            className="change-theme-button"
+            icon={faWandMagicSparkles}
+          />
+      </div>
       <div className="search-container">
         <Input
           className='URL-input'
@@ -80,9 +98,8 @@ function App() {
           onChange={handleTokenChange}
           placeholder="Insert access token"
         />
-
         <Button
-          onClick={handleSubmit}
+          onClick={()=> handleSubmit}
           label=" GET "
           className="search-button"
           icon={faSearch}
@@ -115,6 +132,7 @@ function App() {
           {display(displayComponent)}
         </ProjectContext.Provider>
       </div>
+      </Wrapper>
     </div >
   );
 }
@@ -122,3 +140,5 @@ function App() {
 
 
 export default App;
+
+
