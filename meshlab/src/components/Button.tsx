@@ -3,7 +3,7 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC } from 'react';
 
-import './Button.css';
+import './css/Button.css';
 
 interface ButtonProps {
   children?: JSX.Element;
