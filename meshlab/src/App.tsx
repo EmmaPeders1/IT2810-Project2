@@ -19,6 +19,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { PaletteMode } from '@mui/material';
 import { ClassNames } from '@emotion/react';
 import { Wrapper } from './components/Wrapper';
+import Footer from './components/Footer';
 
 type dState = "users" | "commits" | "issues" | null;
 
@@ -75,9 +76,7 @@ function App() {
   return (
     <Wrapper theme={theme}>
       <div className="App" >
-      <Header ></Header>
-      <p>Everything you could ever want from a repository, right at your fingertips
-      </p>
+      <Header />
       < div className='theme-container'>
         <Button
             onClick={() =>
@@ -133,6 +132,7 @@ function App() {
         </ProjectContext.Provider>
       </div>
       </div >
+      <Footer />
     </Wrapper>
   );
 }
