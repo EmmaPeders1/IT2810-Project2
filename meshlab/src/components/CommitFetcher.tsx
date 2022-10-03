@@ -65,7 +65,7 @@ function CommitFetcher(props: { url: string, token: string }) {
   } else {
     return (
       <Box sx={{ height: 400, width: '90%', margin: "0 auto 0 auto" }}>
-        <DataGrid
+        <DataGrid sx={{borderColor: "black", color:"black"}} 
           rows={data.map((commit: CData) => (
             { author_name: commit.author_name, committed_date: commit.committed_date.substring(0, 10), id: commit.id, message: commit.message }
           ))}
