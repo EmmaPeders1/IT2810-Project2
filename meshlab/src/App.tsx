@@ -11,6 +11,8 @@ import UserFilter from './components/UserFilter';
 import Header from './components/Header';
 import DatePicker from './components/DatePicker';
 import StatusFilter from './components/StatusFilter';
+import { GlobalStyles } from './components/Globalstyles';
+import { ThemeButton } from './components/ThemeButton';
 
 type dState = "users" | "commits" | "issues" | null;
 
@@ -32,6 +34,7 @@ function App() {
 
   return (
     <div className="App" >
+      <ThemeButton></ThemeButton>
       <Header ></Header>
       <p>Everything you could ever want from a repository, right at your fingertips
       </p>
