@@ -20,15 +20,18 @@ import { PaletteMode } from '@mui/material';
 import { ClassNames } from '@emotion/react';
 import { Wrapper } from './components/Wrapper';
 import useSessionStorage from './web-storage/SessionStorage';
+import Footer from './components/Footer';
 
 type dState = "users" | "commits" | "issues" | null;
 
 function App() {
 
-  const [theme, setTheme] = useLocalStorage<string>("theme", "dark");
- 
-  const [displayComponent, setDisplayComponent] = useState<dState>(null);
+  const [theme, setTheme] = useLocalStorage("theme", "dark");
 
+  //Currently some problem that might be here or in the fetcher components
+  //even though submiturl updates and useEffect reruns, the new fetch is not reflected in the ui unless the user
+  //switches what component to display and back again
+  const [displayComponent, setDisplayComponent] = useState<dState>(null)
   const display = (displayComponent: dState) => {
     switch (displayComponent) {
       case "users":
@@ -72,13 +75,11 @@ function App() {
   }
  
   return (
-    <div className="App" >
-      <Wrapper theme={theme}>
-      <Header ></Header>
-      <p>Everything you could ever want from a repository, right at your fingertips
-      </p>
+    <Wrapper theme={theme}>
+      <div className="App" >
+      <Header />
       < div className='theme-container'>
-        <Button 
+        <Button
             onClick={() =>
               theme === "light" ? setTheme("purple") : setTheme("light")
             }
@@ -131,9 +132,10 @@ function App() {
           {display(displayComponent)}
         </ProjectContext.Provider>
       </div>
-      </Wrapper>
-    </div >
-  )
+      </div >
+      <Footer />
+    </Wrapper>
+  );
 }
 
 export default App;

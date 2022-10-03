@@ -89,8 +89,8 @@ function UserFetcher() {
 
   } else {
     return (
-      <Box sx={{ height: 400, width: '90%', margin: "0 auto 0 auto"}}>
-      <DataGrid sx={{borderColor: "black", color:"black"}} 
+      <Box sx={{ height: 400, width: '90%', margin: "0 auto 3rem auto" }}>
+      <DataGrid sx={{borderColor: "black", color:"black"}}
         rows={data.map((user: UData) => (
           { id: user.id, username: user.username, fullName: user.name}
           ))}
