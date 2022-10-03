@@ -9,15 +9,13 @@ Developed by:
 - Martine Mansåker
 - Hang Celin Le
 
-## Tech stack
+## :computer: Tech stack
 
 - React -Typescript
 
-## Running the application
+## :arrow_forward: Running the application
 
-In the project directory, you can run:
-
-npm start
+In the project directory, you can run the project by typing *npm start* in the terminal.
 
 Runs the app in the development mode.
 Open http://localhost:3000 to view it in the browser.
@@ -25,39 +23,31 @@ The page will reload on edits.
 
 npm test
 
-
-
 npm run build
 
 
-## Content and functionality
+## :page_with_curl: Content and functionality
 
-Applikasjonen skal ha flere sideelementer, men utforming og valg er opp til dere. Lag en løsning som dere mener er intuitiv og fornuftig.
+### Content
+When starting the application, the user will be met by a header and a search field. The user can input their desired URL-link and accesstoken. If at least one of the inputs are not accepted, an error message will appear. Three buttons will appear if both inputs are accepted. These reads *USERS*, *COMMITS* and *ISSUES*. Upon clicking on the different buttons, a data grid will be visible for the user. This data grid will have different headers based on what button is pressed. The user can filter or sort these as they like. 
 
-Siden skal ha responsiv web-design (se under krav til teknologi). I praksis skal du demonstrere bruk av teknikker for responsiv web design.
 
-En bruker skal kunne "lagre" noe lokalt, som skal hentes frem (eksemeplvis lagre spesifikke innstillinger eller valg som er gjort). I praksis skal du demonstrere bruk av HTML Web Storage (local storage, session storage, indexedDb). 
+###  Functionality
+To adhere to responsive web design, the elements are are responsive to changes and are functional for different screen sizes. This is primarly implemented by the use of flex boxes. 
 
-Presentasjon av gitlab-data skal være parameterisert. Det vil si at en bruker skal kunne gjøre noen valg som bidrar til å utforme/endre presentasjonen (filtrere på dato eller brukernavn eksempelvis).
+The saving on this website is automatic and the user will be met by their old choice of theme and API upon restart. The saving is handled by **[INSERT REASON]**
 
-The application consists of 
-
-* Two input fields (one for the base-URL and one for the access token)
-* Four buttons (so the user can "start" the data collection and can choose what kind of data they are interested in to)       
+The gitlab-data is parametric as the user has the ability to change what the data grids are displaying. All the colomns has a filter ability which can be accessed by pressing the three vertical dots which appear within the header cell upon hovering. The same process can be used to obtain the ability to decide how the data is sorted and what data to display. The last feature can be problematic, as the user can remove all the colomns, but this can be undone by changing to a different category and then choosing the old category again. This means that the user's choices concerning the data grid does not last, even in session. 
 
 ## Technical requirements
 
-Løsningen implementeres med Typescript.
+Our application is implementet with TypeScript and is based on React (and JSX). Functional components are primarly used, but the *Header.tsx*- file is a class based component. The component structure is appropriate to the project, as the components- and css-files are placed in folders by the same names. 
 
-Our application is implementet with TypeScript and is based on React (and JSX). Functional components are primarly used, but the *Header.tsx*- file is a class based component. The component structure is 
+*State* and *props* are used to save and change the appearance of the application. 
 
-Løsningen skal baseres på React (og JSX)Bruk primært funksjonelle komponenter, men du skal også lage en komponent som class. Implementere en hesiktsmessig komponentstruktur.
+The Context API is used to **[NOE MED URL]**.
 
-Løsningen viser god bruk av de ordinære mekanismene i React for å lagre og endre tilstand (state og props). 
-
-I dette prosjektet skal vi ikke bruke løsninger som redux, mobx eller bibliotek for å håndtere tilstand da dette er tema i neste prosjekt
-
-Løsningen viser bruk av Context API'et.
+[mui.com](https://mui.com/)
 
 Du kan bruke UI-komponenter fra eksterne bibliotek, men skjal også implementere egne Reackt komponenter
 
