@@ -6,6 +6,7 @@ import { faSearch, faFilter, faUser, faPen, faExclamationTriangle, faWandMagicSp
 import { UserFetcher } from './components/UserFetcher';
 import { CommitFetcher } from './components/CommitFetcher';
 import { IssueFetcher } from './components/IssueFetcher';
+import { ProjectContext } from './context/ProjectContext';
 import { Filters } from './components/Filters';
 import UserFilter from './components/UserFilter';
 import Header from './components/Header';
@@ -32,21 +33,31 @@ function App() {
   const display = (displayComponent: dState) => {
     switch (displayComponent) {
       case "users":
-        return <UserFetcher url={submitURL} token={submitToken} />
+        return <UserFetcher />
       case "commits":
-        return <CommitFetcher url={submitURL} token={submitToken} />
+        return <CommitFetcher />
       case "issues":
-        return <IssueFetcher url={submitURL} token={submitToken} />
+        return <IssueFetcher />
       default:
         return ""
     }
   }
 
-  const [currentURL, setCurrentURL] = useState<string>("123");
-  const [submitURL, setSubmitURL] = useState<string>("https://gitlab.stud.idi.ntnu.no/it2810-h22/Team-17/project2"); // for now we default to this so we dont have to input it for testing
+  interface PInfo {
+    url: string,
+    token: string
+  }
 
-  const [currentToken, setCurrentToken] = useState<string>("aeg");
-  const [submitToken, setSubmitToken] = useState<string>("glpat-Fy8Cs4SqsPRrBa6MirZy"); // same defaulting, not really secure but whatever
+  //just defaulting to use our project, only while developing
+  const [projectInfo, setProjectInfo] = useState<PInfo>({
+    url: 'https://gitlab.stud.idi.ntnu.no/it2810-h22/Team-17/project2',
+    token: 'glpat-Fy8Cs4SqsPRrBa6MirZy'
+  }
+  )
+
+  const [currentURL, setCurrentURL] = useState<string>("");
+
+  const [currentToken, setCurrentToken] = useState<string>("");
 
   function handleURLChange(e: React.ChangeEvent<HTMLInputElement>) {
     setCurrentURL(e.target.value);
@@ -58,8 +69,7 @@ function App() {
 
   function handleSubmit(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
-    setSubmitURL(currentURL);
-    setSubmitToken(currentToken);
+    setProjectInfo({ url: currentURL, token: currentToken })
   }
 
   return (
@@ -118,7 +128,9 @@ function App() {
       </div>
 
       <div>
-        {display(displayComponent)}
+        <ProjectContext.Provider value={projectInfo}>
+          {display(displayComponent)}
+        </ProjectContext.Provider>
       </div>
       </div >
     </Wrapper>
