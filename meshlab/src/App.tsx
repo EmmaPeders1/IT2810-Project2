@@ -62,8 +62,6 @@ function App() {
     setSubmitToken(currentToken);
   }
 
-
-
   return (
     <div className="App" >
       <Wrapper theme={theme}>
@@ -90,9 +88,8 @@ function App() {
           onChange={handleTokenChange}
           placeholder="Insert access token"
         />
-
         <Button
-          onClick={handleSubmit}
+          onClick={()=> handleSubmit}
           label=" GET "
           className="search-button"
           icon={faSearch}

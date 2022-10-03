@@ -59,9 +59,6 @@ function UserFetcher(props: { url: string, token: string }) {
 
   }, [props.url])
 
-<<<<<<< HEAD
-    }, [])
-
     const styles = (theme: string) => ({
       root: {
         width: "100%",
@@ -80,8 +77,6 @@ function UserFetcher(props: { url: string, token: string }) {
       }
     });
 
-
-
     //return JSX: if there was an error: tell the user, otherwise return the data
     if (error) {
         return <p> Something went wrong with fetching the data. Are you sure there are no spelling mistakes in your url, and you have the correct accesses? (make sure you're using the correct access token)</p>
@@ -94,20 +89,6 @@ function UserFetcher(props: { url: string, token: string }) {
       <DataGrid sx={{borderColor: "black", color:"black"}} 
         rows={data.map((user: UData) => (
           { id: user.id, username: user.username, fullName: user.name}
-=======
-  //return JSX: if there was an error: tell the user, otherwise return the data
-  if (error) {
-    return <p> Something went wrong with fetching the data. Are you sure there are no spelling mistakes in your url, and you have the correct accesses? (make sure you're using the correct access token)</p>
-  } else if (!isLoaded) {
-    return <p>Loading...</p>
-
-  } else {
-    return (
-      <Box sx={{ height: 400, width: '90%', margin: "0 auto 0 auto" }}>
-        <DataGrid
-          rows={data.map((user: UData) => (
-            { id: user.id, username: user.username, fullName: user.name }
->>>>>>> origin/dev
           ))}
           columns={[{ field: 'id', headerName: 'ID', width: 90 },
           {
