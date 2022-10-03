@@ -19,17 +19,16 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { PaletteMode } from '@mui/material';
 import { ClassNames } from '@emotion/react';
 import { Wrapper } from './components/Wrapper';
+import useSessionStorage from './web-storage/SessionStorage';
 
 type dState = "users" | "commits" | "issues" | null;
 
 function App() {
 
-  const [theme, setTheme] = useLocalStorage("theme", "dark");
+  const [theme, setTheme] = useLocalStorage<string>("theme", "dark");
+ 
+  const [displayComponent, setDisplayComponent] = useState<dState>(null);
 
-  //Currently some problem that might be here or in the fetcher components
-  //even though submiturl updates and useEffect reruns, the new fetch is not reflected in the ui unless the user 
-  //switches what component to display and back again
-  const [displayComponent, setDisplayComponent] = useState<dState>(null)
   const display = (displayComponent: dState) => {
     switch (displayComponent) {
       case "users":
@@ -52,12 +51,12 @@ function App() {
   const [projectInfo, setProjectInfo] = useState<PInfo>({
     url: 'https://gitlab.stud.idi.ntnu.no/it2810-h22/Team-17/project2',
     token: 'glpat-Fy8Cs4SqsPRrBa6MirZy'
-  }
+    }
   )
 
-  const [currentURL, setCurrentURL] = useState<string>("");
+  const [currentURL, setCurrentURL] = useSessionStorage<string>("CurrentURL", "Insert your gitlab project url");
 
-  const [currentToken, setCurrentToken] = useState<string>("");
+  const [currentToken, setCurrentToken] = useSessionStorage<string>("CurrentToken", "Insert access token");
 
   function handleURLChange(e: React.ChangeEvent<HTMLInputElement>) {
     setCurrentURL(e.target.value);
@@ -71,7 +70,7 @@ function App() {
     event.preventDefault();
     setProjectInfo({ url: currentURL, token: currentToken })
   }
-
+ 
   return (
     <div className="App" >
       <Wrapper theme={theme}>
@@ -89,16 +88,16 @@ function App() {
           />
       </div>
       <div className="search-container">
-        <Input
+        <Input 
           className='URL-input'
           onChange={handleURLChange}
-          placeholder="Insert your gitlab project URL"
+          placeholder= {currentURL}
         />
         <Input
           onChange={handleTokenChange}
-          placeholder="Insert access token"
+          placeholder={currentToken}
         />
-        <Button
+        <Button 
           onClick={()=> handleSubmit}
           label=" GET "
           className="search-button"
@@ -134,10 +133,8 @@ function App() {
       </div>
       </Wrapper>
     </div >
-  );
+  )
 }
-
-
 
 export default App;
 
