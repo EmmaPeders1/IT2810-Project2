@@ -17,6 +17,7 @@ interface InputProps {
   value?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  dataTestid?: string;
 }
 
 const Input: FC<InputProps> = ({
@@ -31,7 +32,8 @@ const Input: FC<InputProps> = ({
   placeholder,
   value,
   onChange,
-  onKeyDown
+  onKeyDown,
+  dataTestid
 }) => {
 
   const inputElement = <input
@@ -45,6 +47,7 @@ const Input: FC<InputProps> = ({
     onChange={onChange}
     onKeyDown={onKeyDown}
     autoComplete={autoComplete}
+    data-testid={dataTestid}
   />;
 
   if (!label && !children) return inputElement;

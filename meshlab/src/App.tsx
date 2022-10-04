@@ -76,7 +76,9 @@ function App() {
   }
 
   return (
-    <Wrapper theme={theme}>
+    <Wrapper
+      theme={theme}
+      data-testid="wrapper">
       <div className="App" >
         <div id="headerContainer">
           <Header />
@@ -89,6 +91,7 @@ function App() {
             label="Change theme"
             className="change-theme-button"
             icon={faWandMagicSparkles}
+            dataTestid="change-theme-button"
           />
         </div>
         <span className = "instruction">Step 1: Input your gitlab project URL and corresponding access token</span>
