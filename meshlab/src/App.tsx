@@ -78,68 +78,70 @@ function App() {
   return (
     <Wrapper theme={theme}>
       <div className="App" >
-      <Header />
-      < div className='theme-container'>
-        <Button
-            onClick={() =>
-              theme === "light" ? setTheme("purple") : setTheme("light")
-            }
-            label="Change theme"
-            className="change-theme-button"
-            icon={faWandMagicSparkles}
+        <div id="headerContainer">
+          <Header />
+        </div>
+        < div className='theme-container'>
+          <Button
+              onClick={() =>
+                theme === "light" ? setTheme("purple") : setTheme("light")
+              }
+              label="Change theme"
+              className="change-theme-button"
+              icon={faWandMagicSparkles}
+            />
+        </div>
+        <div className="search-container">
+          <Input 
+            className='URL-input'
+            onChange={handleURLChange}
+            placeholder= {currentURL}
           />
-      </div>
-      <div className="search-container">
-        <Input 
-          className='URL-input'
-          onChange={handleURLChange}
-          placeholder= {currentURL}
-        />
-        <Input
-          onChange={handleTokenChange}
-          placeholder={currentToken}
-        />
-        <Button 
-          onClick={handleSubmit}
-          label=" GET "
-          className="search-button"
-          icon={faSearch}
-          onKeyDown={() => console.log("search!")}
-        />
-      </div>
-      
-      <div className="filter-container">
-        <Button
-          onClick={() => setDisplayComponent("users")}
-          label=" USERS "
-          className="user-filter-button"
-          icon={faUser}
-        />
-        <Button
-          onClick={() => setDisplayComponent("commits")}
-          label=" COMMITS "
-          className="commit-filter-button"
-          icon={faPen}
-        />
-        <Button
-          onClick={() => setDisplayComponent("issues")}
-          label=" ISSUES "
-          className="issue-filter-button"
-          icon={faExclamationTriangle}
-        />
-      </div>
+          <Input
+            className='token'
+            onChange={handleTokenChange}
+            placeholder={currentToken}
+          />
+          <Button 
+            onClick={handleSubmit}
+            label=" GET "
+            className="search-button"
+            icon={faSearch}
+            onKeyDown={() => console.log("search!")}
+          />
+        </div>
+        <div className="filter-container">
+          <Button
+            onClick={() => setDisplayComponent("users")}
+            label=" USERS "
+            className="user-filter-button"
+            icon={faUser}
+          />
+          <Button
+            onClick={() => setDisplayComponent("commits")}
+            label=" COMMITS "
+            className="commit-filter-button"
+            icon={faPen}
+          />
+          <Button
+            onClick={() => setDisplayComponent("issues")}
+            label=" ISSUES "
+            className="issue-filter-button"
+            icon={faExclamationTriangle}
+          />
+        </div>
 
-      <div>
-        <ProjectContext.Provider value={projectInfo}>
-          {display(displayComponent)}
-        </ProjectContext.Provider>
-      </div>
+        <div id="displayContainer">
+          <ProjectContext.Provider value={projectInfo}>
+            {display(displayComponent)}
+          </ProjectContext.Provider>
+        </div>
+        <div id="footerContainer">
+          <Footer />
+        </div>
       </div >
-      <Footer />
     </Wrapper>
   );
 }
 
 export default App;
-
-

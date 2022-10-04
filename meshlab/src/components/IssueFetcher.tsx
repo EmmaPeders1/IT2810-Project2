@@ -69,8 +69,8 @@ function IssueFetcher() {
 
     } else {
         return (
-            <Box sx={{ height: 400, width: '90%', margin: "0 auto 3rem auto" }}>
-                <DataGrid sx={{borderColor: "black", color:"black"}}
+            <Box sx={{ height: 450, width: '90%', margin: "0 auto 3rem auto" }}>
+                <DataGrid sx={{borderColor: "black", color:"black", backgroundColor: "whitesmoke"}}
                     rows={data.map((issue: IData) => (
                         { author_name: issue.author.name, assignees: issue.assignees.map((assignee) => (assignee.name)), created_date: issue.created_at.substring(0, 10), labels: issue.labels, iid: issue.iid, title: issue.title }
                     ))}
