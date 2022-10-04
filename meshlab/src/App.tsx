@@ -73,7 +73,7 @@ function App() {
     event.preventDefault();
     setProjectInfo({ url: currentURL, token: currentToken })
   }
- 
+
   return (
     <Wrapper theme={theme}>
       <div className="App" >
@@ -89,7 +89,7 @@ function App() {
           />
       </div>
       <div className="search-container">
-        <Input 
+        <Input
           className='URL-input'
           onChange={handleURLChange}
           placeholder= {currentURL}
@@ -98,7 +98,7 @@ function App() {
           onChange={handleTokenChange}
           placeholder={currentToken}
         />
-        <Button 
+        <Button
           onClick={()=> handleSubmit}
           label=" GET "
           className="search-button"

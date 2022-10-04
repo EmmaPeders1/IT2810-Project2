@@ -1,8 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`<Button className="commit-filter-button"/> renders correctly 1`] = `
 <button
-  className="button-component undefined"
+  className="button-component commit-filter-button"
+  onClick={[Function]}
+/>
+`;
+
+exports[`<Button className="issue-filter-button"/> renders correctly 1`] = `
+<button
+  className="button-component issue-filter-button"
+  onClick={[Function]}
+/>
+`;
+
+exports[`<Button className="search-button"/> renders correctly 1`] = `
+<button
+  className="button-component search-button"
+  onClick={[Function]}
+/>
+`;
+
+exports[`<Button className="user-filter-button"/> renders correctly 1`] = `
+<button
+  className="button-component user-filter-button"
   onClick={[Function]}
 />
 `;
