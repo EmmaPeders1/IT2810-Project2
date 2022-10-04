@@ -43,9 +43,7 @@ function CommitFetcher() {
       .then(
         (result: Promise<any>) => {
           setIsLoaded(true);
-          console.log(result)
           const response = result as unknown as CData[];
-          console.log(response);
           setData(response);
         }
       )
@@ -61,7 +59,7 @@ function CommitFetcher() {
 
   //return JSX: if there was an error: tell the user, otherwise return the data
   if (error) {
-    return <p> Something went wrong with fetching the data. Are you sure there are no spelling mistakes in your url, and you have the correct accesses? (make sure you're using the correct access token)</p>
+    return <p className="error-message"> Something went wrong with fetching the data. Are you sure there are no spelling mistakes in your url, and you have the correct accesses? (make sure you're using the correct access token)</p>
   } else if (!isLoaded) {
     return <p>Loading...</p>
 
