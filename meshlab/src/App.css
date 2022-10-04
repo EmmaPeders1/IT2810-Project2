@@ -77,6 +77,12 @@ p.error-message{
   width: 100%;
 }
 
+.chartDiv {
+  height: 300; 
+  width: 50%; 
+  margin: 0 auto 3rem auto;
+}
+
 @media (max-width: 950px) {
   .URL-input, .token{
     max-width: 300px;
