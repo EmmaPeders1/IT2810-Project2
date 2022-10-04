@@ -52,9 +52,9 @@ function App() {
 
   //just defaulting to use our project, only while developing
   const [projectInfo, setProjectInfo] = useState<PInfo>({
-    url: 'https://gitlab.stud.idi.ntnu.no/it2810-h22/Team-17/project2',
-    token: 'glpat-Fy8Cs4SqsPRrBa6MirZy'
-    }
+    url: '',
+    token: ''
+  }
   )
 
   const [currentURL, setCurrentURL] = useSessionStorage<string>("CurrentURL", "Insert your gitlab project url");
@@ -69,6 +69,7 @@ function App() {
     setCurrentToken(e.target.value);
   }
 
+
   function handleSubmit(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
     setProjectInfo({ url: currentURL, token: currentToken })
@@ -79,11 +80,11 @@ function App() {
       theme={theme}
       data-testid="wrapper">
       <div className="App" >
-      <Header />
-      < div
-        className='theme-container'
-        data-testid="div-container">
-        <Button
+        <div id="headerContainer">
+          <Header />
+        </div>
+        < div className='theme-container'>
+          <Button
             onClick={() =>
               theme === "light" ? setTheme("purple") : setTheme("light")
             }
@@ -92,58 +93,61 @@ function App() {
             icon={faWandMagicSparkles}
             dataTestid="change-theme-button"
           />
-      </div>
-      <div className="search-container">
-        <Input
-          className='URL-input'
-          onChange={handleURLChange}
-          placeholder= {currentURL}
-          dataTestid="search-input"
-        />
-        <Input
-          onChange={handleTokenChange}
-          placeholder={currentToken}
-        />
-        <Button
-          onClick={()=> handleSubmit}
-          label=" GET "
-          className="search-button"
-          icon={faSearch}
-          onKeyDown={() => console.log("search!")}
-        />
-      </div>
-      <div className="filter-container">
-        <Button
-          onClick={() => setDisplayComponent("users")}
-          label=" USERS "
-          className="user-filter-button"
-          icon={faUser}
-        />
-        <Button
-          onClick={() => setDisplayComponent("commits")}
-          label=" COMMITS "
-          className="commit-filter-button"
-          icon={faPen}
-        />
-        <Button
-          onClick={() => setDisplayComponent("issues")}
-          label=" ISSUES "
-          className="issue-filter-button"
-          icon={faExclamationTriangle}
-        />
-      </div>
+        </div>
+        <span className = "instruction">Step 1: Input your gitlab project URL and corresponding access token</span>
+        <div className="search-container">
+          <Input
+            className='URL-input'
+            onChange={handleURLChange}
+            placeholder={currentURL}
+          />
+          <Input
+            className='token'
+            onChange={handleTokenChange}
+            placeholder={currentToken}
+          />
+          <Button
+            onClick={handleSubmit}
+            label=" GET "
+            className="search-button"
+            icon={faSearch}
+            onKeyDown={() => console.log("search!")}
+          />
+        </div>
+        <span className = "instruction">Step 2: Select which category you want information about.
+          Remember: Nothing will appear unless you choose a category</span>
+        <div className="filter-container">
+          <Button
+            onClick={() => setDisplayComponent("users")}
+            label=" USERS "
+            className="user-filter-button"
+            icon={faUser}
+          />
+          <Button
+            onClick={() => setDisplayComponent("commits")}
+            label=" COMMITS "
+            className="commit-filter-button"
+            icon={faPen}
+          />
+          <Button
+            onClick={() => setDisplayComponent("issues")}
+            label=" ISSUES "
+            className="issue-filter-button"
+            icon={faExclamationTriangle}
+          />
+        </div>
 
-      <div>
-        <ProjectContext.Provider value={projectInfo}>
-          {display(displayComponent)}
-        </ProjectContext.Provider>
-      </div>
+        <div id="displayContainer">
+          <ProjectContext.Provider value={projectInfo}>
+            {display(displayComponent)}
+          </ProjectContext.Provider>
+        </div>
+        <div id="footerContainer">
+          <Footer />
+        </div>
       </div >
-      <Footer />
     </Wrapper>
   );
 }
 
 export default App;
-
-

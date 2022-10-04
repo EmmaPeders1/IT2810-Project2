@@ -1,15 +1,16 @@
-#FooterContainer {
+.footer {
   width: 100%;
-  display: flex;
-  justify-content: right;
+  height: 7%;
   background-color: blueviolet;
+  text-align: right;
+  position:sticky;
+  left:0;
+  bottom:0;
+  right:0;
+}
+
+.text {
   color: whitesmoke;
-  font-family: "Lucida Console", monospace;
-  font-size: 1rem;
-  letter-spacing: 0.2em;
-  margin-top: 10em;
-  overflow: hidden;
-  padding: 2% 0 2% 0;
-  position: sticky;
-  bottom: 0px;
+  font-size: 18px;
+  margin-right: 10px;
 }

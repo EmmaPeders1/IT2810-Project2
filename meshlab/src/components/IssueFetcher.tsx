@@ -4,6 +4,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import { parseURL } from './../Utils';
 import { useSlotProps } from '@mui/base';
 import { ProjectContext } from '../context/ProjectContext';
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
 
 // glpat-VVibRbJ7pSfHKcYLnU5S   gitlab AC OLD NOT WORKING
 // glpat-Fy8Cs4SqsPRrBa6MirZy new one with role = developer
@@ -61,16 +63,23 @@ function IssueFetcher() {
 
     }, [])
 
+    let number = data.length;
+
     //return JSX: if there was an error: tell the user, otherwise return the data
     if (error) {
-        return <p> Something went wrong with fetching the data. Are you sure there are no spelling mistakes in your url, and you have the correct accesses? (make sure you're using the correct access token)</p>
+        return <p className="error-message"> Something went wrong with fetching the data. Are you sure there are no spelling mistakes in your url, and you have the correct accesses? (make sure you're using the correct access token)</p>
     } else if (!isLoaded) {
         return <p>Loading...</p>
 
     } else {
         return (
-            <Box sx={{ height: 400, width: '90%', margin: "0 auto 3rem auto" }}>
-                <DataGrid sx={{borderColor: "black", color:"black"}}
+            <Box sx={{ height: 450, width: '90%', margin: "0 auto 7rem auto" }}>
+
+                <Card sx={{ width: 275, fontColor: "black", margin: "0 auto 0 auto", marginBottom: "10px", fontSize: "18px" }}>
+                    <Typography sx={{ fontSize: 40 }} color="text.secondary" > {number} issues</Typography>
+                </Card>
+
+                <DataGrid sx={{ borderColor: "black", color: "black", backgroundColor: "whitesmoke" }}
                     rows={data.map((issue: IData) => (
                         { author_name: issue.author.name, assignees: issue.assignees.map((assignee) => (assignee.name)), created_date: issue.created_at.substring(0, 10), labels: issue.labels, iid: issue.iid, title: issue.title }
                     ))}
