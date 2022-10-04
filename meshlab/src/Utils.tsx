@@ -15,9 +15,11 @@ function parseURL(url: string): string[] {
 
 }
 
-function hello() {
-
+function isValidURL(url:string){
+  console.log("funker det?");
+    return /^(?<baseURL>https\:\/\/gitlab\.[a-z\.]+[a-z])\/(?<path>[\w\-?\/]*)$/g.test(url);
 }
-console.log(parseURL("jksgr"))
 
-export { hello, parseURL }
+
+export { parseURL, isValidURL }
+

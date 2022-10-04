@@ -9,20 +9,66 @@
   font-family: "Lucida Console", monospace;
   font-size: 200%;
   letter-spacing: 0.2em;
+  overflow-x: hidden;
 }
 
 #headerImg {
   height: 200px;
+  width: auto;
 }
 
 @media (max-width: 800px) {
   #headerImg {
     height: 150px;
-  } 
+    width: auto;
+  }
 }
 
 @media (max-width: 550px) {
   #headerImg {
     height: 130px;
-  } 
+    width: auto;
+  }
+}
+
+@media (max-width: 420px) {
+  #headerImg {
+    height: 90px;
+    width: auto;
+  }
+}
+
+@media (max-width: 490px) {
+  #headerImg {
+    height: 110px;
+    width: auto;
+  }
+}
+
+@media (max-width: 330px) {
+  #headerImg {
+    height: 70px;
+    width: auto;
+  }
+}
+
+@media (max-width: 395px) {
+  #headerImg {
+    height: 80px;
+    width: auto;
+  }
+}
+
+@media (max-width: 270px) {
+  #headerImg {
+    height: 50px;
+    width: auto;
+  }
+}
+
+@media (min-width: 1500px) {
+  #headerImg {
+    width: 100%;
+    height: auto;
+  }
 }

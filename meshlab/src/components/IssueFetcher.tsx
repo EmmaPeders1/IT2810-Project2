@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { parseURL } from './../Utils';
 import { useSlotProps } from '@mui/base';
+import { ProjectContext } from '../context/ProjectContext';
 
 // glpat-VVibRbJ7pSfHKcYLnU5S   gitlab AC OLD NOT WORKING
 // glpat-Fy8Cs4SqsPRrBa6MirZy new one with role = developer
@@ -16,18 +17,20 @@ type IData = {
     labels: string[];
 }
 
-function IssueFetcher(props: { url: string, token: string }) {
+function IssueFetcher() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [data, setData] = useState<IData[]>([]);
 
+    const projectInfo = useContext(ProjectContext);
+
     useEffect(() => {
-        const [baseURL, path] = parseURL(props.url);
+        const [baseURL, path] = parseURL(projectInfo.url);
         const url = baseURL + "/api/v4/projects/" + path + "/issues";
         fetch(url
             , {
                 headers: {
-                    "PRIVATE-TOKEN": props.token, // our projects access token
+                    "PRIVATE-TOKEN": projectInfo.token, // our projects access token
                     'Content-Type': 'application/json',
                     'Accept': 'appliaction/json'
                 }
@@ -60,14 +63,14 @@ function IssueFetcher(props: { url: string, token: string }) {
 
     //return JSX: if there was an error: tell the user, otherwise return the data
     if (error) {
-        return <p> Something went wrong with fetching the data. Are you sure there are no spelling mistakes in your url, and you have the correct accesses? (make sure you're using the correct access token)</p>
+        return <p className="error-message"> Something went wrong with fetching the data. Are you sure there are no spelling mistakes in your url, and you have the correct accesses? (make sure you're using the correct access token)</p>
     } else if (!isLoaded) {
         return <p>Loading...</p>
 
     } else {
         return (
-            <Box sx={{ height: 400, width: '90%', margin: "0 auto 0 auto" }}>
-                <DataGrid
+            <Box sx={{ height: 450, width: '90%', margin: "0 auto 3rem auto" }}>
+                <DataGrid sx={{borderColor: "black", color:"black", backgroundColor: "whitesmoke"}}
                     rows={data.map((issue: IData) => (
                         { author_name: issue.author.name, assignees: issue.assignees.map((assignee) => (assignee.name)), created_date: issue.created_at.substring(0, 10), labels: issue.labels, iid: issue.iid, title: issue.title }
                     ))}

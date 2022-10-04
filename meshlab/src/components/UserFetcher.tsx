@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
-import { hello, parseURL } from './../Utils';
+import { parseURL } from './../Utils';
+import { ProjectContext } from '../context/ProjectContext';
+
 
 // glpat-VVibRbJ7pSfHKcYLnU5S   gitlab AC OLD NOT WORKING
 // glpat-Fy8Cs4SqsPRrBa6MirZy new one with role = developer
@@ -15,21 +17,23 @@ type UData = {
   web_url: string
 }
 
-function UserFetcher(props: { url: string, token: string }) {
+function UserFetcher() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState<UData[]>([]);
 
+  const projectInfo = useContext(ProjectContext);
+
   //reruns when prop (url) changes, yet not reflected inUI unless user switches what to dispplay and back again
   useEffect(() => {
-    const [baseURL, path] = parseURL(props.url);
+    const [baseURL, path] = parseURL(projectInfo.url);
     const url = baseURL + "/api/v4/projects/" + path + "/members/all";
     fetch(url
       //'https://gitlab.stud.idi.ntnu.no/api/v4/projects/17628/members/all/{id} to get one of the members'
       // https://gitlab.stud.idi.ntnu.no/it2810-h22/Team-17/project2, use /it2810-h22/Team-17/project2 instead of prject id. (/ represented as %2F)
       , {
         headers: {
-          "PRIVATE-TOKEN": props.token, // our projects access token is glpat-Fy8Cs4SqsPRrBa6MirZy
+          "PRIVATE-TOKEN": projectInfo.token, // our projects access token is glpat-Fy8Cs4SqsPRrBa6MirZy
           'Content-Type': 'application/json',
           'Accept': 'appliaction/json'
         }
@@ -57,20 +61,38 @@ function UserFetcher(props: { url: string, token: string }) {
         }
       )
 
-  }, [props.url])
+  }, [])
 
-  //return JSX: if there was an error: tell the user, otherwise return the data
-  if (error) {
-    return <p> Something went wrong with fetching the data. Are you sure there are no spelling mistakes in your url, and you have the correct accesses? (make sure you're using the correct access token)</p>
-  } else if (!isLoaded) {
-    return <p>Loading...</p>
+    const styles = (theme: string) => ({
+      root: {
+        width: "100%",
+        overflowX: "auto"
+      },
+      table: {
+        minWidth: 700
+      },
+      tableRow: {
+        "&.Mui-selected, &.Mui-selected:hover": {
+          backgroundColor: "purple",
+          "& > .MuiTableCell-root": {
+            color: "yellow"
+          }
+        }
+      }
+    });
+
+    //return JSX: if there was an error: tell the user, otherwise return the data
+    if (error) {
+        return <p className="error-message"> Something went wrong with fetching the data. Are you sure there are no spelling mistakes in your url, and you have the correct accesses? (make sure you're using the correct access token)</p>
+    } else if (!isLoaded) {
+        return <p>Loading...</p>
 
   } else {
     return (
-      <Box sx={{ height: 400, width: '90%', margin: "0 auto 0 auto" }}>
-        <DataGrid
-          rows={data.map((user: UData) => (
-            { id: user.id, username: user.username, fullName: user.name }
+      <Box sx={{ height: 450, width: "90%", margin: "0 auto 3rem auto" }}>
+      <DataGrid sx={{borderColor: "black", color:"black", backgroundColor: "whitesmoke"}}
+        rows={data.map((user: UData) => (
+          { id: user.id, username: user.username, fullName: user.name}
           ))}
           columns={[{ field: 'id', headerName: 'ID', width: 90 },
           {
