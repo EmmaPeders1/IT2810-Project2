@@ -1,38 +1,142 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-flow: column wrap;
+  text-align: center;
+  height: 100%;
+  overflow-x: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-container {
+  flex-flow: row wrap;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 1rem;
+  padding: 2rem;
 }
 
-.App-link {
-  color: #61dafb;
+.filter-container {
+  flex-flow: row wrap;
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 1rem;
+  padding: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+p {
+  color: black;
+}
+
+p.error-message {
+  color: red;
+}
+
+.instruction {
+  max-width: 95%;
+}
+
+.URL-input {
+  width: 30rem;
+}
+
+.token {
+  width: 190px;
+}
+
+.theme-container {
+  flex-flow: row wrap;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+#displayContainer {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-flow: row wrap;
+  display: flex;
+  justify-content: center;
+}
+
+#footerContainer {
+  width: 100%;
+  height: 7%;
+  background-color: blueviolet;
+  text-align: right;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+#headerContainer {
+  width: 100%;
+}
+
+.chartDiv {
+  height: 300; 
+  width: 35%; 
+  margin-bottom: 20px;
+
+}
+
+.commitDataContainer {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.dataGridBox {
+  height: 450px; 
+  width: 60%;
+  margin: 0 0 7rem 0;
+}
+
+@media (max-width: 640px) {
+  .chartDiv {
+    height: 500;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
-  to {
-    transform: rotate(360deg);
+  .dataGridBox {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 950px) {
+
+  .URL-input,
+  .token {
+    max-width: 300px;
+  }
+  .chartDiv {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .dataGridBox {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 370px) {
+
+  .URL-input,
+  .token {
+    max-width: 190px;
   }
 }

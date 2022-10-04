@@ -1,0 +1,37 @@
+.input-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: var(--color-dark);
+}
+
+.input-field {
+  border-radius: 5px;
+  border: 0;
+  outline: 0;
+  padding: 1.2rem 1rem;
+  color: black;
+  font-size: inherit;
+  vertical-align: center;
+  outline: 1.5px solid rgb(170, 168, 168);
+}
+
+.input-field::placeholder {
+  color: var(--color-dark);
+  opacity: 0.7;
+}
+
+.input-field:hover,
+.input-field:focus {
+  outline: 1.5px solid rgb(4, 52, 71);
+}
+
+.input-field::-webkit-outer-spin-button,
+.input-field::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.input-field[type="number"] {
+  appearance: textfield;
+}

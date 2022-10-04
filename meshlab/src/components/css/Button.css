@@ -1,0 +1,38 @@
+.button-component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.4rem 1rem;
+  border-radius: 5px;
+  font-size: inherit;
+  width: max-content;
+  border: 0;
+  background: #66ccff;
+  outline: 1.5px solid rgb(110, 188, 219);
+  color: rgb(4, 52, 71);
+  white-space: nowrap;
+}
+
+.button-component:disabled {
+  filter: grayscale(80%);
+  cursor: not-allowed;
+}
+
+.button-component:focus:not(:disabled),
+.button-component:hover:not(:disabled) {
+  background: rgb(110, 188, 219);
+  outline: 1.5px solid rgb(4, 52, 71);
+}
+
+[data-type="danger"] {
+  background-color: red;
+  color: whitesmoke;
+}
+
+[data-type="danger"]:focus:not(:disabled),
+[data-type="danger"]:hover:not(:disabled) {
+  outline: 1.5px solid rgb(113, 8, 8);
+  background-color: rgb(189, 20, 20);
+}
