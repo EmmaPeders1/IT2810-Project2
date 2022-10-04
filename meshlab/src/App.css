@@ -88,6 +88,13 @@ p.error-message {
   margin: 0 auto 3rem auto;
 }
 
+@media (max-width: 640px) {
+  .chartDiv {
+    height: 500;
+    width: 90%;
+  }
+}
+
 @media (max-width: 950px) {
 
   .URL-input,
