@@ -8,7 +8,8 @@
   bottom:0;
   right:0;
 }
-p {
+
+.text {
   color: whitesmoke;
   font-size: 18px;
   margin-right: 10px;

@@ -8,7 +8,7 @@ class Footer extends React.Component {
     return (
       <footer>
         <div id="FooterContainer">
-          <p>Created by Group 17&trade;</p>
+          <p className='text'>Created by Group 17&trade;</p>
         </div>
       </footer>
     )

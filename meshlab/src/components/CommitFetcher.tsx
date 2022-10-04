@@ -69,17 +69,17 @@ function CommitFetcher() {
 
   } else {
     return (
-      <Box sx={{ height: 450, width: "90%", margin: "0 auto 3rem auto" }}>
+      <Box sx={{ height: 450, width: "90%", margin: "0 auto 7rem auto" }}>
 
-          <Card sx={{ width: 275, fontColor: "black", margin: "0 auto 0 auto", marginBottom: "10px", fontSize: "18px"}}>
-            <Typography sx={{ fontSize: 40 }} color="text.secondary" > {number} commits</Typography>
-          </Card>
-          
+        <Card sx={{ width: 275, fontColor: "black", margin: "0 auto 0 auto", marginBottom: "10px", fontSize: "18px" }}>
+          <Typography sx={{ fontSize: 40 }} color="text.secondary" > {number} commits</Typography>
+        </Card>
+
         <DataGrid
           getRowHeight={() => 'auto'}
           getEstimatedRowHeight={() => 200}
           density="comfortable"
-          sx={{borderColor: "black", textAlign: "left", backgroundColor: "whitesmoke"}}
+          sx={{ borderColor: "black", textAlign: "left", backgroundColor: "whitesmoke" }}
           rows={data.map((commit: CData) => (
             { author_name: commit.author_name, committed_date: commit.committed_date.substring(0, 10), id: commit.id, message: commit.message }
           ))}

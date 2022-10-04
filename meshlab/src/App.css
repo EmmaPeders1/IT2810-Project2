@@ -8,7 +8,7 @@
   margin-right: auto;
 }
 
-.search-container{
+.search-container {
   flex-flow: row wrap;
   display: flex;
   justify-content: center;
@@ -19,7 +19,7 @@
   padding: 2rem;
 }
 
-.filter-container{
+.filter-container {
   flex-flow: row wrap;
   display: flex;
   justify-content: center;
@@ -30,22 +30,27 @@
   padding: 2rem;
 }
 
-p{
+p {
   color: black;
 }
 
-p.error-message{
-  color:red;
+p.error-message {
+  color: red;
 }
 
-.URL-input{
+.instruction {
+  max-width: 95%;
+}
+
+.URL-input {
   width: 30rem;
 }
+
 .token {
   width: 190px;
 }
 
-.theme-container{
+.theme-container {
   flex-flow: row wrap;
   display: flex;
   justify-content: center;
@@ -53,7 +58,7 @@ p.error-message{
   padding: 2rem;
 }
 
-#displayContainer{
+#displayContainer {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
@@ -67,10 +72,10 @@ p.error-message{
   height: 7%;
   background-color: blueviolet;
   text-align: right;
-  position:relative;
-  left:0;
-  bottom:0;
-  right:0;
+  position: relative;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 #headerContainer {
@@ -78,13 +83,17 @@ p.error-message{
 }
 
 @media (max-width: 950px) {
-  .URL-input, .token{
+
+  .URL-input,
+  .token {
     max-width: 300px;
   }
 }
 
 @media (max-width: 370px) {
-  .URL-input, .token{
+
+  .URL-input,
+  .token {
     max-width: 190px;
   }
 }
