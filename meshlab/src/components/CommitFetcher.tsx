@@ -62,8 +62,6 @@ function CommitFetcher() {
           const response = result as unknown as CData[];
           setData(response);
 
-          console.log(response);
-
           const commiters = response.map(commit => commit.author_name)
           const uniqueCommiters = commiters.filter((item: string, index: number) => commiters.indexOf(item) == index );
           
