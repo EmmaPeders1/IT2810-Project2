@@ -75,10 +75,14 @@ function App() {
   }
 
   return (
-    <Wrapper theme={theme}>
+    <Wrapper
+      theme={theme}
+      data-testid="wrapper">
       <div className="App" >
       <Header />
-      < div className='theme-container'>
+      < div
+        className='theme-container'
+        data-testid="div-container">
         <Button
             onClick={() =>
               theme === "light" ? setTheme("purple") : setTheme("light")
@@ -86,6 +90,7 @@ function App() {
             label="Change theme"
             className="change-theme-button"
             icon={faWandMagicSparkles}
+            dataTestid="change-theme-button"
           />
       </div>
       <div className="search-container">
@@ -93,6 +98,7 @@ function App() {
           className='URL-input'
           onChange={handleURLChange}
           placeholder= {currentURL}
+          dataTestid="search-input"
         />
         <Input
           onChange={handleTokenChange}

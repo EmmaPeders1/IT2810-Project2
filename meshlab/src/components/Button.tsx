@@ -12,8 +12,9 @@ interface ButtonProps {
   icon?: IconDefinition;
   type?: string;
   className?: string;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
+  dataTestid?: string;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -22,7 +23,10 @@ const Button: FC<ButtonProps> = ({
   label,
   icon,
   type,
-  className, onClick, onKeyDown }) => {
+  className,
+  onClick,
+  onKeyDown,
+  dataTestid }) => {
   return (
     <button
       disabled={disabled}
@@ -30,6 +34,7 @@ const Button: FC<ButtonProps> = ({
       data-type={type}
       onClick={onClick}
       onKeyDown={onKeyDown}
+      data-testid={dataTestid}
     >
       {icon && <FontAwesomeIcon icon={icon} />}
       {label || children}
