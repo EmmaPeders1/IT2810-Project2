@@ -52,8 +52,8 @@ function App() {
 
   //just defaulting to use our project, only while developing
   const [projectInfo, setProjectInfo] = useState<PInfo>({
-    url: 'https://gitlab.stud.idi.ntnu.no/it2810-h22/Team-17/project2',
-    token: 'glpat-Fy8Cs4SqsPRrBa6MirZy'
+    url: '',
+    token: ''
     }
   )
 
@@ -68,6 +68,7 @@ function App() {
   function handleTokenChange(e: React.ChangeEvent<HTMLInputElement>) {
     setCurrentToken(e.target.value);
   }
+
 
   function handleSubmit(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
@@ -99,13 +100,14 @@ function App() {
           placeholder={currentToken}
         />
         <Button 
-          onClick={()=> handleSubmit}
+          onClick={handleSubmit}
           label=" GET "
           className="search-button"
           icon={faSearch}
           onKeyDown={() => console.log("search!")}
         />
       </div>
+      
       <div className="filter-container">
         <Button
           onClick={() => setDisplayComponent("users")}
