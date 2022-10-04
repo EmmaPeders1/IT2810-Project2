@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import Button from '../components/Button';
 import App from '../App';
 
-test.skip('<Button className="search-button"/> renders correctly', () => {
+test('<Button className="search-button"/> renders correctly', () => {
   const tree = renderer.create(
     <Button onClick={function (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
       throw new Error('Function not implemented.');
@@ -13,7 +13,7 @@ test.skip('<Button className="search-button"/> renders correctly', () => {
     expect(tree).toMatchSnapshot();
 });
 
-test.skip('<Button className="user-filter-button"/> renders correctly', () => {
+test('<Button className="user-filter-button"/> renders correctly', () => {
   const tree = renderer.create(
     <Button onClick={function (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
       throw new Error('Function not implemented.');
@@ -23,7 +23,7 @@ test.skip('<Button className="user-filter-button"/> renders correctly', () => {
     expect(tree).toMatchSnapshot();
 });
 
-test.skip('<Button className="commit-filter-button"/> renders correctly', () => {
+test('<Button className="commit-filter-button"/> renders correctly', () => {
   const tree = renderer.create(
     <Button onClick={function (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
       throw new Error('Function not implemented.');
@@ -33,7 +33,7 @@ test.skip('<Button className="commit-filter-button"/> renders correctly', () => 
     expect(tree).toMatchSnapshot();
 });
 
-test.skip('<Button className="issue-filter-button"/> renders correctly', () => {
+test('<Button className="issue-filter-button"/> renders correctly', () => {
   const tree = renderer.create(
     <Button onClick={function (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
       throw new Error('Function not implemented.');
@@ -43,7 +43,7 @@ test.skip('<Button className="issue-filter-button"/> renders correctly', () => {
     expect(tree).toMatchSnapshot();
 });
 
-test.skip('App renders correctly', () => {
+test('App renders correctly', () => {
   const tree = renderer.create(
     <App />)
     .toJSON();

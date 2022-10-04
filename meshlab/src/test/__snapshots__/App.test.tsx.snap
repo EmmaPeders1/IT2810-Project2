@@ -31,6 +31,7 @@ exports[`<Button className="user-filter-button"/> renders correctly 1`] = `
 exports[`App renders correctly 1`] = `
 <div
   className="sc-bcXHqe nButd"
+  data-testid="wrapper"
 >
   <div
     className="App"
@@ -78,6 +79,7 @@ exports[`App renders correctly 1`] = `
     >
       <input
         className="input-field URL-input"
+        data-testid="search-input"
         onChange={[Function]}
         placeholder="Insert your gitlab project url"
         type="text"
