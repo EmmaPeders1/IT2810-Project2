@@ -36,7 +36,7 @@ When starting the application, the user will be met by a header and a search fie
 
 To adhere to responsive web design, the elements are are responsive to changes and are functional for different screen sizes. This is primarly implemented by the use of flex boxes. 
 
-The saving on this website is automatic and the user will be met by their old choice of theme and API upon restart. The saving is handled by **[INSERT REASON]**
+LocalStorage and SessionStorage is used for storing the theme and the user speciefied url and access token. Our application uses custom hooks that lets use use these almost as normal state. The theme uses LocalStorage, so this is persistent even when stopping and restarting the server. The URL and access token in the input is saved with LocalStorage, so this is persisten when reloading the page.
 
 The gitlab-data is parametric as the user has the ability to change what the data grids are displaying. All the columns has a filter property which can be accessed by pressing the three vertical dots which appear within the header cell upon hovering. The same process can be used to obtain the ability to decide how the data is sorted and what data to display. The last feature can be problematic, as the user can remove all the columns, but this can be undone by changing to a different category and then choosing the old category again. This means that the user's choices concerning the data grid does not last, even in session. 
 
@@ -50,25 +50,19 @@ Our application is therefore implemented with TypeScript and is based on React (
 
 *State* and *props* are used to save and change the appearance of the application. 
 
-The Context API is used to **[NOE MED URL]**.
+The Context API is used to pass the user-unputted project URL and access token. These could just as easily be passed as props but use of Centext was a requirement for the project.
 
 The data grids which are returned in *UserFetcher.tsx*, *CommitFetcher.tsx* and *IssueFetcher.tsx* are imported from [mui.com](https://mui.com/) and modified for our project. *Input.tsx*, *Button.tsx*, *Footer.tsx*, *Header.tsx* and the wrapper classes made up by these are self made.  
 
-The data from Gitlab is fetched with the fetch() function. (mer om dette og AJAX??)
+The data from Gitlab is fetched using fetch(). This complies with the requirements for using AJAX.
 
 HTML Web Storage is used to save the state of theme and input in the fields. In order to save the theme, and have the application remember chosen theme the next time an user starts the server,  we have utilized local storage by creating a custom react hook useLocalStorage(key, defaultValue) to store the state. 
 To make use of session storage, we have made it possible to store the input from the user for each session. Every time the user types in the input field for URL or accesstoken and refreshes the window/ opens a new window, the input is saved.
 
-Our solution has a responsive web design. Layout, scaling and interaction posibilities are adaptable based on what type of device and screen size. By using flex boxes, all the elements and their contents are visible and available for the user to see and interact with.  
+Our solution has a responsive web design. Layout, scaling and interaction posibilities are adaptable based on what type of device and screen size. By using flex boxes, all the elements and their contents are visible and available for the user to see and interact with. 
 
-**Følgende elementer skal være med i løsningen (eventuelt begrunnet i dokumentasjonen hvis det ikke er tatt med)**
-*    Viewport
-*    Media-queries
-*    Bilder som skalerer
-*    Flytende/fleksibel layout
-
-Our solution includes Viewport **[REALLY?]** by ...?
-Media-queries and picture scaling are used in the Header. 
+Media-queries and picture scaling are used in the Header, in order to scale the header image properly.
+We chose not to use viewport because we handled scalability and responsiveness for different devices using CSS flexbox and media-queries.
 
 # :gear: Testing
 
@@ -78,10 +72,12 @@ Målet med dette kravet er at dere kommer i gang med testing, får erfaring i op
 
 Testing av brukergrensesnitt og responsiv design: Gruppa skal beskrive/dokumentere testing på minimum 3 forskjellige enheter hvor det må inngå en mobil (liten skjerm/horisontal + vertikal orientering og en ordinær pc (stor skjerm). 
 
-In testing the user interface and responsive design, we have used the device emulation in the web browser to simulate the design of the appilcation on a phone screen (vertically and horizontally) and an ordinary PC (big screen).
+In testing the user interface and responsive design, we have used the device emulation in the web browser to simulate the design of the appilcation on a phone screen (vertically and horizontally) and an ordinary PC (big screen) as well as an IPad (medium screen).
 
 # :gear: In retrospective
 
 In retrospective, we have gained experience and have some thoughts on what we could have done better. 
 
-For example, we realized that we should have structured our fetching of data and components in another way. Right now we have 3 different components responsible for fetching their own data (User-, Commit- and IssueFetcher). This is nto a good solution. For example thecode in these components responsible for fetching is very similar. If we had more time, we would have written a custom hook for fecthing. Also, we would let another component do ALL the fetching, and the have these components only display the data based on user selection. This way it would be also be easier to validate the url-link and access token provided by the user. Then, we would only display the buttons if an existing gitlab-project with a valid token was provided, otherwise we would alert the user that their input is invalid. Right now, a new call to the API is done everytime a user selects "Users", "Commits" or "Issues". This is quite inneficient and would also be avoided with this other method.
+For example, we realized that we should have structured our fetching of data and components in another way. Right now we have 3 different components responsible for fetching their own data (User-, Commit- and IssueFetcher). This is not a good solution. For example thecode in these components responsible for fetching is very similar. If we had more time, we would have written a custom hook for fecthing.
+
+Also, we would let another component do ALL the fetching, and the have these components only display the data based on user selection. This way it would be also be easier to validate the url-link and access token provided by the user. Then, we would only display the buttons if an existing gitlab-project with a valid token was provided, otherwise we would alert the user that their input is invalid. Right now, a new call to the API is done everytime a user selects "Users", "Commits" or "Issues". This is quite inneficient and would also be avoided with this other method.
