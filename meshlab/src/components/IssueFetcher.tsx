@@ -2,13 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { parseURL } from './../Utils';
-import { useSlotProps } from '@mui/base';
 import { ProjectContext } from '../context/ProjectContext';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
-
-// glpat-VVibRbJ7pSfHKcYLnU5S   gitlab AC OLD NOT WORKING
-// glpat-Fy8Cs4SqsPRrBa6MirZy new one with role = developer
 
 type IData = {
     author: { name: string }
@@ -32,7 +28,7 @@ function IssueFetcher() {
         fetch(url
             , {
                 headers: {
-                    "PRIVATE-TOKEN": projectInfo.token, // our projects access token
+                    "PRIVATE-TOKEN": projectInfo.token, 
                     'Content-Type': 'application/json',
                     'Accept': 'appliaction/json'
                 }
