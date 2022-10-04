@@ -2,19 +2,13 @@ import React, { useState } from 'react';
 import './App.css';
 import Button from './components/Button';
 import Input from './components/Input';
-import { faSearch, faFilter, faUser, faPen, faExclamationTriangle, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faUser, faPen, faExclamationTriangle, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons';
 import { UserFetcher } from './components/UserFetcher';
 import { CommitFetcher } from './components/CommitFetcher';
 import { IssueFetcher } from './components/IssueFetcher';
 import { ProjectContext } from './context/ProjectContext';
 import Header from './components/Header';
-import StatusFilter from './components/StatusFilter';
 import useLocalStorage from './web-storage/Localstorage';
-import styled from 'styled-components';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { PaletteMode } from '@mui/material';
-import { ClassNames } from '@emotion/react';
 import { Wrapper } from './components/Wrapper';
 import useSessionStorage from './web-storage/SessionStorage';
 import Footer from './components/Footer';
@@ -47,12 +41,9 @@ function App() {
     token: string
   }
 
-  //just defaulting to use our project, only while developing
   const [projectInfo, setProjectInfo] = useState<PInfo>({
-    url: '',
-    token: ''
-  }
-  )
+    url: '', token: ''
+  })
 
   const [currentURL, setCurrentURL] = useSessionStorage<string>("CurrentURL", "Insert your gitlab project url");
 
@@ -65,7 +56,6 @@ function App() {
   function handleTokenChange(e: React.ChangeEvent<HTMLInputElement>) {
     setCurrentToken(e.target.value);
   }
-
 
   function handleSubmit(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault();

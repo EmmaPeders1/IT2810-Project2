@@ -2,7 +2,8 @@ import React from 'react'
 import './css/Footer.css'
 
 
-// As per the requirements, out project has class based components
+// As per the requirements, this component is class based
+
 class Footer extends React.Component {
   render() {
     return (

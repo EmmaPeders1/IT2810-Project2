@@ -3,7 +3,8 @@ import './css/Header.css'
 import header from './header.png'
 
 
-// As per the requirements, out project has class based components
+// As per the requirements, this component is class based
+
 class Header extends React.Component {
   render() {
     return (
