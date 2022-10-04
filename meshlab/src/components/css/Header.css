@@ -27,3 +27,10 @@
     height: 130px;
   }
 }
+
+@media (min-width: 1500px) {
+  #headerImg {
+    width: 100%;
+    height: auto;
+  }
+}
