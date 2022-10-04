@@ -42,7 +42,7 @@ The gitlab-data is parametric as the user has the ability to change what the dat
 
 ## :wrench: Technical requirements
 
-The proejct is based på Node and use of the Node Package Manager (NPM). Version 16.X of node.js and version 8.X of npm.
+The project is based på Node and use of the Node Package Manager (NPM). Version 16.X of node.js and version 8.X of npm.
 
 We used the command create-react-app xxx --template typescript to set up the project and are using version 18.
 
@@ -84,4 +84,4 @@ In testing the user interface and responsive design, we have used the device emu
 
 In retrospective, we have gained experience and have some thoughts on what we could have done better. 
 
-For example, we realized that we should have structured our fetching of data and components in another way. 
+For example, we realized that we should have structured our fetching of data and components in another way. Right now we have 3 different components responsible for fetching their own data (User-, Commit- and IssueFetcher). This is nto a good solution. For example thecode in these components responsible for fetching is very similar. If we had more time, we would have written a custom hook for fecthing. Also, we would let another component do ALL the fetching, and the have these components only display the data based on user selection. This way it would be also be easier to validate the url-link and access token provided by the user. Then, we would only display the buttons if an existing gitlab-project with a valid token was provided, otherwise we would alert the user that their input is invalid. Right now, a new call to the API is done everytime a user selects "Users", "Commits" or "Issues". This is quite inneficient and would also be avoided with this other method.
