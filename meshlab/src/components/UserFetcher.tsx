@@ -3,6 +3,11 @@ import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { parseURL } from './../Utils';
 import { ProjectContext } from '../context/ProjectContext';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 
 // glpat-VVibRbJ7pSfHKcYLnU5S   gitlab AC OLD NOT WORKING
@@ -81,6 +86,8 @@ function UserFetcher() {
       }
     });
 
+    let number = data.length;
+
     //return JSX: if there was an error: tell the user, otherwise return the data
     if (error) {
         return <p className="error-message"> Something went wrong with fetching the data. Are you sure there are no spelling mistakes in your url, and you have the correct accesses? (make sure you're using the correct access token)</p>
@@ -89,28 +96,35 @@ function UserFetcher() {
 
   } else {
     return (
+
       <Box sx={{ height: 450, width: "90%", margin: "0 auto 3rem auto" }}>
-      <DataGrid sx={{borderColor: "black", color:"black", backgroundColor: "whitesmoke"}}
-        rows={data.map((user: UData) => (
-          { id: user.id, username: user.username, fullName: user.name}
-          ))}
-          columns={[{ field: 'id', headerName: 'ID', width: 90 },
-          {
-            field: 'username',
-            headerName: 'Username',
-            width: 150,
-          },
-          {
-            field: 'fullName',
-            headerName: 'Full name',
-            width: 300,
-          },]}
-          getRowId={(row) => row.id}
-          pageSize={data.length}
-          rowsPerPageOptions={[data.length]}
-          experimentalFeatures={{ newEditingApi: true }}
-        />
-      </Box>
+
+        <Card sx={{ width: 275, fontColor: "black", margin: "0 auto 0 auto", marginBottom: "10px", fontSize: "18px"}}>
+            <Typography sx={{ fontSize: 40 }} color="text.secondary" > {number} users</Typography>
+        </Card>
+
+        <DataGrid sx={{borderColor: "black", color:"black", backgroundColor: "whitesmoke"}}
+          rows={data.map((user: UData) => (
+            { id: user.id, username: user.username, fullName: user.name}
+            ))}
+            columns={[{ field: 'id', headerName: 'ID', width: 90 },
+            {
+              field: 'username',
+              headerName: 'Username',
+              width: 150,
+            },
+            {
+              field: 'fullName',
+              headerName: 'Full name',
+              width: 300,
+            },]}
+            getRowId={(row) => row.id}
+            pageSize={data.length}
+            rowsPerPageOptions={[data.length]}
+            experimentalFeatures={{ newEditingApi: true }}
+          />
+
+          </Box>
     );
   }
 }
