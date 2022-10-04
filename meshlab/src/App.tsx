@@ -7,8 +7,6 @@ import { UserFetcher } from './components/UserFetcher';
 import { CommitFetcher } from './components/CommitFetcher';
 import { IssueFetcher } from './components/IssueFetcher';
 import { ProjectContext } from './context/ProjectContext';
-import { Filters } from './components/Filters';
-import UserFilter from './components/UserFilter';
 import Header from './components/Header';
 import DatePicker from './components/DatePicker';
 import StatusFilter from './components/StatusFilter';
