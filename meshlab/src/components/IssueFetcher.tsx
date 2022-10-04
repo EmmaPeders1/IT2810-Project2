@@ -73,13 +73,13 @@ function IssueFetcher() {
 
     } else {
         return (
-            <Box sx={{ height: 450, width: '90%', margin: "0 auto 3rem auto" }}>
+            <Box sx={{ height: 450, width: '90%', margin: "0 auto 7rem auto" }}>
 
-                <Card sx={{ width: 275, fontColor: "black", margin: "0 auto 0 auto", marginBottom: "10px", fontSize: "18px"}}>
-                  <Typography sx={{ fontSize: 40 }} color="text.secondary" > {number} issues</Typography>
+                <Card sx={{ width: 275, fontColor: "black", margin: "0 auto 0 auto", marginBottom: "10px", fontSize: "18px" }}>
+                    <Typography sx={{ fontSize: 40 }} color="text.secondary" > {number} issues</Typography>
                 </Card>
 
-                <DataGrid sx={{borderColor: "black", color:"black", backgroundColor: "whitesmoke"}}
+                <DataGrid sx={{ borderColor: "black", color: "black", backgroundColor: "whitesmoke" }}
                     rows={data.map((issue: IData) => (
                         { author_name: issue.author.name, assignees: issue.assignees.map((assignee) => (assignee.name)), created_date: issue.created_at.substring(0, 10), labels: issue.labels, iid: issue.iid, title: issue.title }
                     ))}
