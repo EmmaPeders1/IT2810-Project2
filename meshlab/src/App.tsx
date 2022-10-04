@@ -8,7 +8,6 @@ import { CommitFetcher } from './components/CommitFetcher';
 import { IssueFetcher } from './components/IssueFetcher';
 import { ProjectContext } from './context/ProjectContext';
 import Header from './components/Header';
-import DatePicker from './components/DatePicker';
 import StatusFilter from './components/StatusFilter';
 import useLocalStorage from './web-storage/Localstorage';
 import styled from 'styled-components';
