@@ -9,9 +9,6 @@ import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-// glpat-VVibRbJ7pSfHKcYLnU5S   gitlab AC OLD NOT WORKING
-// glpat-Fy8Cs4SqsPRrBa6MirZy new one with role = developer
-
 type CData = {
   author_name: string,
   committed_date: string,
@@ -43,7 +40,7 @@ function CommitFetcher() {
     fetch(url
       , {
         headers: {
-          "PRIVATE-TOKEN": projectInfo.token, // our projects access token
+          "PRIVATE-TOKEN": projectInfo.token, 
           'Content-Type': 'application/json',
           'Accept': 'appliaction/json'
         }
@@ -95,6 +92,7 @@ function CommitFetcher() {
   let number = data.length;
 
   //return JSX: if there was an error: tell the user, otherwise return the data
+  
   if (error) {
     return <p className="error-message"> Something went wrong with fetching the data. Are you sure there are no spelling mistakes in your url, and you have the correct accesses? (make sure you're using the correct access token)</p>
   } else if (!isLoaded) {
