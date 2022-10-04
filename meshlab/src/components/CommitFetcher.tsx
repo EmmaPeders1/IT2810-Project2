@@ -2,9 +2,72 @@ import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { parseURL } from './../Utils';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import type { ChartData, ChartOptions } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
 
 // glpat-VVibRbJ7pSfHKcYLnU5S   gitlab AC OLD NOT WORKING
 // glpat-Fy8Cs4SqsPRrBa6MirZy new one with role = developer
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+interface ChartProps {
+  options: ChartOptions<'doughnut'>;
+  data: ChartData<'doughnut'>;
+}
+
+const DoughnutData = {
+  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  datasets: [
+    {
+      label: '# of Votes',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+      ],
+      borderWidth: 1,
+    },
+  ],}
+
+type DData = {
+  labels: string[],
+  datasets: [
+    {
+      label: '# of Votes',
+      data: number[],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+      ],
+      borderWidth: 1,
+    },
+  ]
+}
 
 type CData = {
   author_name: string,
@@ -17,6 +80,7 @@ function CommitFetcher(props: { url: string, token: string }) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState<CData[]>([]);
+  const [chartData, setChartData] = useState<DData[]>([]);
 
   useEffect(() => {
     const [baseURL, path] = parseURL(props.url);
@@ -95,6 +159,7 @@ function CommitFetcher(props: { url: string, token: string }) {
           rowsPerPageOptions={[data.length]}
           experimentalFeatures={{ newEditingApi: true }}
         />
+        <Doughnut data={DoughnutData}/>
       </Box>
     );
   }
