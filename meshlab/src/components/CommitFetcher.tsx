@@ -5,8 +5,9 @@ import { parseURL } from './../Utils';
 import { ProjectContext } from '../context/ProjectContext';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
 ChartJS.register(ArcElement, Tooltip, Legend);
-
 
 // glpat-VVibRbJ7pSfHKcYLnU5S   gitlab AC OLD NOT WORKING
 // glpat-Fy8Cs4SqsPRrBa6MirZy new one with role = developer
@@ -71,7 +72,6 @@ function CommitFetcher() {
           for (const name of uniqueCommiters) { commitCounts[name] = 0 }
           for (const name of commiters) { commitCounts[name]++ }
 
-
           setChartData({
             labels: uniqueCommiters,
             datasets: [
@@ -83,8 +83,6 @@ function CommitFetcher() {
               }
             ]
           })
-
-      
         }
       )
       .catch(
@@ -96,6 +94,7 @@ function CommitFetcher() {
       )
   }, [])
 
+  let number = data.length;
 
   //return JSX: if there was an error: tell the user, otherwise return the data
   if (error) {
@@ -109,12 +108,17 @@ function CommitFetcher() {
       <div className="chartDiv">
           { chartData && <Doughnut data={chartData} /> }
       </div>
-      <Box sx={{ height: 450, width: "90%", margin: "0 auto 3rem auto" }}>
+      <Box sx={{ height: 450, width: "90%", margin: "0 auto 7rem auto" }}>
+
+        <Card sx={{ width: 275, fontColor: "black", margin: "0 auto 0 auto", marginBottom: "10px", fontSize: "18px" }}>
+          <Typography sx={{ fontSize: 40 }} color="text.secondary" > {number} commits</Typography>
+        </Card>
+
         <DataGrid
           getRowHeight={() => 'auto'}
           getEstimatedRowHeight={() => 200}
           density="comfortable"
-          sx={{borderColor: "black", textAlign: "left", backgroundColor: "whitesmoke"}}
+          sx={{ borderColor: "black", textAlign: "left", backgroundColor: "whitesmoke" }}
           rows={data.map((commit: CData) => (
             { author_name: commit.author_name, committed_date: commit.committed_date.substring(0, 10), id: commit.id, message: commit.message }
           ))}

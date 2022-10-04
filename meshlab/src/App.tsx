@@ -54,7 +54,7 @@ function App() {
   const [projectInfo, setProjectInfo] = useState<PInfo>({
     url: '',
     token: ''
-    }
+  }
   )
 
   const [currentURL, setCurrentURL] = useSessionStorage<string>("CurrentURL", "Insert your gitlab project url");
@@ -74,7 +74,7 @@ function App() {
     event.preventDefault();
     setProjectInfo({ url: currentURL, token: currentToken })
   }
- 
+
   return (
     <Wrapper theme={theme}>
       <div className="App" >
@@ -83,26 +83,27 @@ function App() {
         </div>
         < div className='theme-container'>
           <Button
-              onClick={() =>
-                theme === "light" ? setTheme("purple") : setTheme("light")
-              }
-              label="Change theme"
-              className="change-theme-button"
-              icon={faWandMagicSparkles}
-            />
+            onClick={() =>
+              theme === "light" ? setTheme("purple") : setTheme("light")
+            }
+            label="Change theme"
+            className="change-theme-button"
+            icon={faWandMagicSparkles}
+          />
         </div>
+        <span className = "instruction">Step 1: Input your gitlab project URL and corresponding access token</span>
         <div className="search-container">
-          <Input 
+          <Input
             className='URL-input'
             onChange={handleURLChange}
-            placeholder= {currentURL}
+            placeholder={currentURL}
           />
           <Input
             className='token'
             onChange={handleTokenChange}
             placeholder={currentToken}
           />
-          <Button 
+          <Button
             onClick={handleSubmit}
             label=" GET "
             className="search-button"
@@ -110,6 +111,8 @@ function App() {
             onKeyDown={() => console.log("search!")}
           />
         </div>
+        <span className = "instruction">Step 2: Select which category you want information about.
+          Remember: Nothing will appear unless you choose a category</span>
         <div className="filter-container">
           <Button
             onClick={() => setDisplayComponent("users")}
