@@ -102,47 +102,48 @@ function CommitFetcher() {
 
   } else {
     return (
-    <>
+    <div className="commitDataContainer">
       <div className="chartDiv">
           { chartData && <Doughnut data={chartData} /> }
       </div>
-      <Box sx={{ height: 450, width: "90%", margin: "0 auto 7rem auto" }}>
+      <div className="dataGridBox">
+        <Box sx={{ height: 450, width: "auto"}}>
+          <Card sx={{ width: 275, fontColor: "black", margin: "0 auto 0 auto", marginBottom: "10px", fontSize: "18px" }}>
+            <Typography sx={{ fontSize: 40 }} color="text.secondary" > {number} commits</Typography>
+          </Card>
 
-        <Card sx={{ width: 275, fontColor: "black", margin: "0 auto 0 auto", marginBottom: "10px", fontSize: "18px" }}>
-          <Typography sx={{ fontSize: 40 }} color="text.secondary" > {number} commits</Typography>
-        </Card>
-
-        <DataGrid
-          getRowHeight={() => 'auto'}
-          getEstimatedRowHeight={() => 200}
-          density="comfortable"
-          sx={{ borderColor: "black", textAlign: "left", backgroundColor: "whitesmoke" }}
-          rows={data.map((commit: CData) => (
-            { author_name: commit.author_name, committed_date: commit.committed_date.substring(0, 10), id: commit.id, message: commit.message }
-          ))}
-          columns={[
-            {
-              field: 'committed_date',
-              headerName: 'Date',
-              width: 100,
-            },
-            {
-              field: 'message',
-              headerName: 'Message',
-              width: 350,
-            },
-            {
-              field: 'author_name',
-              headerName: 'Author',
-              width: 200,
-            },]}
-          getRowId={(row) => row.id}
-          pageSize={data.length}
-          rowsPerPageOptions={[data.length]}
-          experimentalFeatures={{ newEditingApi: true }}
-        />
-       </Box>
-      </>
+          <DataGrid
+            getRowHeight={() => 'auto'}
+            getEstimatedRowHeight={() => 200}
+            density="comfortable"
+            sx={{ borderColor: "black", textAlign: "left", backgroundColor: "whitesmoke" }}
+            rows={data.map((commit: CData) => (
+              { author_name: commit.author_name, committed_date: commit.committed_date.substring(0, 10), id: commit.id, message: commit.message }
+            ))}
+            columns={[
+              {
+                field: 'committed_date',
+                headerName: 'Date',
+                width: 100,
+              },
+              {
+                field: 'message',
+                headerName: 'Message',
+                width: 350,
+              },
+              {
+                field: 'author_name',
+                headerName: 'Author',
+                width: 200,
+              },]}
+            getRowId={(row) => row.id}
+            pageSize={data.length}
+            rowsPerPageOptions={[data.length]}
+            experimentalFeatures={{ newEditingApi: true }}
+          />
+        </Box>
+       </div>
+      </div>
     );
   }
 }

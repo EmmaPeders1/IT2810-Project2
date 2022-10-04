@@ -84,14 +84,34 @@ p.error-message {
 
 .chartDiv {
   height: 300; 
-  width: 50%; 
-  margin: 0 auto 3rem auto;
+  width: 35%; 
+  margin-bottom: 20px;
+
+}
+
+.commitDataContainer {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.dataGridBox {
+  height: 450px; 
+  width: 60%;
+  margin: 0 0 7rem 0;
 }
 
 @media (max-width: 640px) {
   .chartDiv {
     height: 500;
     width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .dataGridBox {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -100,6 +120,16 @@ p.error-message {
   .URL-input,
   .token {
     max-width: 300px;
+  }
+  .chartDiv {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .dataGridBox {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
