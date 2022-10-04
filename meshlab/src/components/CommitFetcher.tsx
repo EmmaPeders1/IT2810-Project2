@@ -3,8 +3,11 @@ import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { parseURL } from './../Utils';
 import { ProjectContext } from '../context/ProjectContext';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 // glpat-VVibRbJ7pSfHKcYLnU5S   gitlab AC OLD NOT WORKING
 // glpat-Fy8Cs4SqsPRrBa6MirZy new one with role = developer
@@ -16,10 +19,21 @@ type CData = {
   message: string,
 }
 
+type chartData =  {
+  labels: string[],
+  datasets: {
+      label: string,
+      data: number[],
+      backgroundColor: string[],
+      hoverOffset: number,
+  }[]
+}
+
 function CommitFetcher() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState<CData[]>([]);
+  const [chartData, setChartData] = useState<chartData>();
 
   const projectInfo = useContext(ProjectContext);
 
@@ -47,6 +61,26 @@ function CommitFetcher() {
           setIsLoaded(true);
           const response = result as unknown as CData[];
           setData(response);
+
+          const commiters = response.map(commit => commit.author_name)
+          const uniqueCommiters = commiters.filter((item: string, index: number) => commiters.indexOf(item) == index );
+          
+          let commitCounts: { [key: string]: number; } = {}; 
+  
+          for (const name of uniqueCommiters) { commitCounts[name] = 0 }
+          for (const name of commiters) { commitCounts[name]++ }
+
+          setChartData({
+            labels: uniqueCommiters,
+            datasets: [
+              {
+                data: Object.values(commitCounts),
+                label: 'Commiters',
+                backgroundColor: ["#ffbe0b","#fb5607","#ff006e","#8338ec","#3a86ff"],
+                hoverOffset: 10
+              }
+            ]
+          })
         }
       )
       .catch(
@@ -56,7 +90,6 @@ function CommitFetcher() {
           setError(err);
         }
       )
-
   }, [])
 
   let number = data.length;
@@ -69,42 +102,48 @@ function CommitFetcher() {
 
   } else {
     return (
-      <Box sx={{ height: 450, width: "90%", margin: "0 auto 7rem auto" }}>
+    <div className="commitDataContainer">
+      <div className="chartDiv">
+          { chartData && <Doughnut data={chartData} /> }
+      </div>
+      <div className="dataGridBox">
+        <Box sx={{ height: 450, width: "auto"}}>
+          <Card sx={{ width: 275, fontColor: "black", margin: "0 auto 0 auto", marginBottom: "10px", fontSize: "18px" }}>
+            <Typography sx={{ fontSize: 40 }} color="text.secondary" > {number} commits</Typography>
+          </Card>
 
-        <Card sx={{ width: 275, fontColor: "black", margin: "0 auto 0 auto", marginBottom: "10px", fontSize: "18px" }}>
-          <Typography sx={{ fontSize: 40 }} color="text.secondary" > {number} commits</Typography>
-        </Card>
-
-        <DataGrid
-          getRowHeight={() => 'auto'}
-          getEstimatedRowHeight={() => 200}
-          density="comfortable"
-          sx={{ borderColor: "black", textAlign: "left", backgroundColor: "whitesmoke" }}
-          rows={data.map((commit: CData) => (
-            { author_name: commit.author_name, committed_date: commit.committed_date.substring(0, 10), id: commit.id, message: commit.message }
-          ))}
-          columns={[
-            {
-              field: 'committed_date',
-              headerName: 'Date',
-              width: 100,
-            },
-            {
-              field: 'message',
-              headerName: 'Message',
-              width: 350,
-            },
-            {
-              field: 'author_name',
-              headerName: 'Author',
-              width: 200,
-            },]}
-          getRowId={(row) => row.id}
-          pageSize={data.length}
-          rowsPerPageOptions={[data.length]}
-          experimentalFeatures={{ newEditingApi: true }}
-        />
-      </Box>
+          <DataGrid
+            getRowHeight={() => 'auto'}
+            getEstimatedRowHeight={() => 200}
+            density="comfortable"
+            sx={{ borderColor: "black", textAlign: "left", backgroundColor: "whitesmoke" }}
+            rows={data.map((commit: CData) => (
+              { author_name: commit.author_name, committed_date: commit.committed_date.substring(0, 10), id: commit.id, message: commit.message }
+            ))}
+            columns={[
+              {
+                field: 'committed_date',
+                headerName: 'Date',
+                width: 100,
+              },
+              {
+                field: 'message',
+                headerName: 'Message',
+                width: 350,
+              },
+              {
+                field: 'author_name',
+                headerName: 'Author',
+                width: 200,
+              },]}
+            getRowId={(row) => row.id}
+            pageSize={data.length}
+            rowsPerPageOptions={[data.length]}
+            experimentalFeatures={{ newEditingApi: true }}
+          />
+        </Box>
+       </div>
+      </div>
     );
   }
 }

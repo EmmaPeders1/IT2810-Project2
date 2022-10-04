@@ -82,11 +82,54 @@ p.error-message {
   width: 100%;
 }
 
+.chartDiv {
+  height: 300; 
+  width: 35%; 
+  margin-bottom: 20px;
+
+}
+
+.commitDataContainer {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.dataGridBox {
+  height: 450px; 
+  width: 60%;
+  margin: 0 0 7rem 0;
+}
+
+@media (max-width: 640px) {
+  .chartDiv {
+    height: 500;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .dataGridBox {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 @media (max-width: 950px) {
 
   .URL-input,
   .token {
     max-width: 300px;
+  }
+  .chartDiv {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .dataGridBox {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
