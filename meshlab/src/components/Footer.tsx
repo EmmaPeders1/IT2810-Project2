@@ -7,7 +7,7 @@ class Footer extends React.Component {
   render() {
     return (
       <div id="FooterContainer">
-        Created by Group 17 <sup>"TM"</sup>
+        <p>Created by Group 17&trade;</p>
       </div>
     )
   }
