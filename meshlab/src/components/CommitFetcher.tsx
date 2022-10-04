@@ -67,12 +67,12 @@ function CommitFetcher() {
 
   } else {
     return (
-      <Box sx={{ height: 400, width: '90%', margin: "0 auto 3rem auto" }}>
+      <Box sx={{ height: 450, width: "90%", margin: "0 auto 3rem auto" }}>
         <DataGrid
           getRowHeight={() => 'auto'}
           getEstimatedRowHeight={() => 200}
           density="comfortable"
-          sx={{borderColor: "black", textAlign: "left"}}
+          sx={{borderColor: "black", textAlign: "left", backgroundColor: "whitesmoke"}}
           rows={data.map((commit: CData) => (
             { author_name: commit.author_name, committed_date: commit.committed_date.substring(0, 10), id: commit.id, message: commit.message }
           ))}

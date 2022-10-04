@@ -6,9 +6,11 @@ import './css/Footer.css'
 class Footer extends React.Component {
   render() {
     return (
-      <div id="FooterContainer">
-        <p>Created by Group 17&trade;</p>
-      </div>
+      <footer>
+        <div id="FooterContainer">
+          <p>Created by Group 17&trade;</p>
+        </div>
+      </footer>
     )
   }
 }

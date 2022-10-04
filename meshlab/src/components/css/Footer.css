@@ -1,8 +1,9 @@
-#FooterContainer {
+.footer {
   width: 100%;
+  height: 7%;
   background-color: blueviolet;
   text-align: right;
-  position:absolute;
+  position:sticky;
   left:0;
   bottom:0;
   right:0;
